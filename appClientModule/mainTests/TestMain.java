@@ -87,12 +87,12 @@ public class TestMain {
         Batiment b = BatimentServiceDelegate.findBatimentById(10);
         BatimentServiceDelegate.SheepToBatiment(b, sheeps);
         
-		*/
+		
 		List<Sheep> s = SheepServicesDelegate.getSheeps();
 		for(Sheep ss:s){
 			System.out.println(ss.getCode_sheep());
 		}
-
+*/
 	}
 
 }
