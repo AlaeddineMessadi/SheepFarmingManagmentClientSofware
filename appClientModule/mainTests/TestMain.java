@@ -42,17 +42,14 @@ public class TestMain {
 	 */
 	
 	public static void main(String[] args) throws Exception {
-		AdminServicesRemote admin = null ;
-		EmployeeServicesRemote employee = null ;
-		FarmServicesRemote farm = null ;
-		BatimentServicesRemote batiment = null ;
-		SheepServicesRemote sheep = null ;
 
-		
 
-	//   Farm f = new Farm(0, "FarmaVille", "Nabeul");
-    //   FarmServicesDelegate.createFarm(f);
- /*	  	 Farm f1 = new Farm(); 
+	
+
+ /*	   Farm f = new Farm(0, "FarmaVille", "Nabeul");
+       FarmServicesDelegate.createFarm(f);
+	*/ 
+		/* 	 Farm f1 = new Farm(); 
 	    f1= FarmServicesDelegate.findFarmById(1);
 		System.out.println(f1.toString());
 		
@@ -67,15 +64,19 @@ public class TestMain {
 	*/	/////
 
 		
-/*		Employee emp1 = new Employee("aza", "e", "e", "e", "e", "e", "e", "e", "e");
+		Employee emp1 = new Employee("aza", "ee", "ee", "ee", "ee", "ee", "ee", "ee", "ee");
      	Employee emp2 = new  Employee("alea", null, null, null, null, null, null, null, null);
+     	
 	List<Employee> emp = new ArrayList<Employee>();
 	emp.add(emp1);
 	emp.add(emp2);
 	
-	Batiment b = BatimentServiceDelegate.findBatimentById(10);
+	Batiment b = BatimentServiceDelegate.findBatimentById(1);
 	BatimentServiceDelegate.EmployeeToBatiment(b,emp);
-	*/  //////////////
+	
+	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa");
+	AdminServiceDelegate.createAdmin(a);
+/*	*/  //////////////
 
 		
 /*		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");
@@ -87,12 +88,12 @@ public class TestMain {
         Batiment b = BatimentServiceDelegate.findBatimentById(10);
         BatimentServiceDelegate.SheepToBatiment(b, sheeps);
         
-		*/
+	
 		List<Sheep> s = SheepServicesDelegate.getSheeps();
 		for(Sheep ss:s){
 			System.out.println(ss.getCode_sheep());
 		}
-
+	*/
 	}
 
 }
