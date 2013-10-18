@@ -29,6 +29,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class AdministratorHomeGUI extends JFrame {
 
@@ -63,6 +65,7 @@ public class AdministratorHomeGUI extends JFrame {
 		setTitle("AdministratorHomeGUI");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1426, 733);
+		setLocationRelativeTo(null);
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -71,17 +74,68 @@ public class AdministratorHomeGUI extends JFrame {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
+		
 		JMenuItem menuItem = new JMenuItem("New menu item");
 		mnFile.add(menuItem);
+		
+		JMenu mnFarm = new JMenu("Farm");
+		menuBar.add(mnFarm);
+		
+		JMenuItem mntmAddFarm = new JMenuItem("Add Farm");
+		mnFarm.add(mntmAddFarm);
+		
+		JMenuItem mntmModifyFarm = new JMenuItem("Modify Farm");
+		mnFarm.add(mntmModifyFarm);
+		
+		JMenuItem mntmDeleteFarm = new JMenuItem("Delete Farm");
+		mnFarm.add(mntmDeleteFarm);
+		
+		JMenu mnBatiment = new JMenu("Batiment");
+		menuBar.add(mnBatiment);
+		
+		JMenuItem mntmAddBatiment = new JMenuItem("Add Batiment");
+		mnBatiment.add(mntmAddBatiment);
+		
+		JMenuItem mntmModifyBatiment = new JMenuItem("Modify Batiment");
+		mnBatiment.add(mntmModifyBatiment);
+		
+		JMenuItem mntmDeleteBatiment = new JMenuItem("Delete Batiment");
+		mnBatiment.add(mntmDeleteBatiment);
 		
 		JMenu mnSheeps = new JMenu("Sheeps");
 		menuBar.add(mnSheeps);
 		
+		JMenuItem mntmAddSheep = new JMenuItem("Add Sheep");
+		mnSheeps.add(mntmAddSheep);
+		
+		JMenuItem mntmModifySheep = new JMenuItem("Modify Sheep");
+		mnSheeps.add(mntmModifySheep);
+		
+		JMenuItem mntmDeleteSheep = new JMenuItem("Delete Sheep");
+		mnSheeps.add(mntmDeleteSheep);
+		
 		JMenu mnEmployees = new JMenu("Employees");
 		menuBar.add(mnEmployees);
 		
+		JMenuItem mntmAddEmployee = new JMenuItem("Add Employee");
+		mnEmployees.add(mntmAddEmployee);
+		
+		JMenuItem mntmModifyEmployee = new JMenuItem("Modify Employee");
+		mnEmployees.add(mntmModifyEmployee);
+		
+		JMenuItem mntmDeleteEmployee = new JMenuItem("Delete Employee");
+		mnEmployees.add(mntmDeleteEmployee);
+		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
+		
+		JMenuItem mntmHelp = new JMenuItem("Help");
+		mnHelp.add(mntmHelp);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mnHelp.add(mntmAbout);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,7 +159,7 @@ public class AdministratorHomeGUI extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Informations", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(399, 136, 782, 459);
+		panel.setBounds(315, 138, 782, 459);
 		profilPanel.add(panel);
 		panel.setLayout(null);
 		
@@ -147,6 +201,12 @@ public class AdministratorHomeGUI extends JFrame {
 		panel.add(avatarField);
 		
 		passwordField = new JPasswordField();
+		passwordField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				
+			}
+		});
 		passwordField.setBounds(408, 176, 219, 20);
 		panel.add(passwordField);
 		

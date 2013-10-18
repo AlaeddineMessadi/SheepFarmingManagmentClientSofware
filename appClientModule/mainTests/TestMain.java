@@ -67,15 +67,19 @@ public class TestMain {
 	*/	/////
 
 		
-/*		Employee emp1 = new Employee("aza", "e", "e", "e", "e", "e", "e", "e", "e");
+		Employee emp1 = new Employee("aza", "ee", "ee", "ee", "ee", "ee", "ee", "ee", "ee");
      	Employee emp2 = new  Employee("alea", null, null, null, null, null, null, null, null);
+     	
 	List<Employee> emp = new ArrayList<Employee>();
 	emp.add(emp1);
 	emp.add(emp2);
 	
-	Batiment b = BatimentServiceDelegate.findBatimentById(10);
+	Batiment b = BatimentServiceDelegate.findBatimentById(1);
 	BatimentServiceDelegate.EmployeeToBatiment(b,emp);
-	*/  //////////////
+	
+	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa");
+	AdminServiceDelegate.createAdmin(a);
+/*	*/  //////////////
 
 		
 /*		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");
@@ -92,7 +96,8 @@ public class TestMain {
 		for(Sheep ss:s){
 			System.out.println(ss.getCode_sheep());
 		}
-*/
+	*/
+	
 	}
 
 }
