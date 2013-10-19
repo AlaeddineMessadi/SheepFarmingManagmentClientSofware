@@ -1,5 +1,7 @@
 package gui;
 
+import gui.menu.FarmAdd;
+import gui.menu.FarmModify;
 import gui.messages.retypePassword;
 
 import java.awt.EventQueue;
@@ -98,16 +100,35 @@ public class AdministratorHomeGUI extends JFrame {
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnFile.add(mntmExit);
 		
-		JMenuItem menuItem = new JMenuItem("New menu item");
-		mnFile.add(menuItem);
-		
 		JMenu mnFarm = new JMenu("Farm");
 		menuBar.add(mnFarm);
 		
 		JMenuItem mntmAddFarm = new JMenuItem("Add Farm");
+		mntmAddFarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FarmAdd m=new FarmAdd();
+				m.setVisible(true);
+			}
+		});
+		mntmAddFarm.addMouseListener(new MouseAdapter() {
+			@Override
+	
+			public void mouseClicked(MouseEvent e) {
+				FarmAdd m=new FarmAdd();
+				m.setVisible(true);
+				
+			}
+		});
 		mnFarm.add(mntmAddFarm);
 		
 		JMenuItem mntmModifyFarm = new JMenuItem("Modify Farm");
+		mntmModifyFarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FarmModify m=new FarmModify();
+				m.setVisible(true);
+				
+			}
+		});
 		mnFarm.add(mntmModifyFarm);
 		
 		JMenuItem mntmDeleteFarm = new JMenuItem("Delete Farm");

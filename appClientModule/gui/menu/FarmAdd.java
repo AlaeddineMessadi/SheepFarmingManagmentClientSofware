@@ -3,6 +3,8 @@ package gui.menu;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,6 +14,11 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
+
+import persistance.Farm;
+import services.farmServices.FarmServicesRemote;
+
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -62,6 +69,25 @@ public class FarmAdd extends JFrame {
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				FarmServicesRemote gestion = null;
+				try {
+				Context context =new InitialContext();
+				
+				Object o=context.lookup("ejb:/SheepFarmingManagment/FarmServices!services.farmServices.FarmServicesRemote");
+				gestion=(FarmServicesRemote) o;
+				Farm farm=new Farm();
+				farm.setNomFarm(txtName.getText());
+				farm.setAdress(txtAdress.getText());
+				farm.setTelephone(txtTel.getText());
+				farm.setMail(txtEmail.getText());
+				
+            	gestion.createFarm(farm);
+				} catch (Exception ex) {
+					// TODO Auto-generated catch block
+					ex.printStackTrace();
+				}
+			
+				
 			}
 		});
 		btnAdd.setBounds(52, 408, 113, 23);
@@ -80,7 +106,7 @@ public class FarmAdd extends JFrame {
 		txtName.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtName.setBackground(Color.WHITE);
 		panel.add(txtName);
-		txtName.setText("\r\n");
+		
 		txtName.setColumns(10);
 		
 		txtAdress = new JTextField();
@@ -93,7 +119,7 @@ public class FarmAdd extends JFrame {
 		txtTel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtTel.setBounds(168, 174, 182, 20);
 		panel.add(txtTel);
-		txtTel.setText("\r\n");
+		
 		txtTel.setColumns(10);
 		
 		JLabel lblName = new JLabel("Name\t:");
@@ -119,7 +145,7 @@ public class FarmAdd extends JFrame {
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtEmail.setBounds(169, 241, 182, 20);
-		txtEmail.setText("\r\n");
+		
 		txtEmail.setColumns(10);
 		panel.add(txtEmail);
 		
