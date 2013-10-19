@@ -139,9 +139,9 @@ public class AuthenticationGUI extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				if (textField.getText().isEmpty()) {
-					notification.setText("*User name missed ...");
+					notification.setText("*Missing UserName ...");
 				} else if (passwordField.getText().isEmpty()) {
-					notification.setText("*Password missed ...");
+					notification.setText("*Missing Password ...");
 				} else {
 					User user = new User();
 					Admin admin = new Admin();
@@ -164,7 +164,7 @@ public class AuthenticationGUI extends JFrame {
 						admingui.setVisible(true);
 						setVisible(false);
 					} else {
-						notification.setText("* user not found");
+						notification.setText("*User not found ...");
 						notification.setIcon(new ImageIcon(AuthenticationGUI.class.getResource("/images/error.gif")));
 						//
 					}

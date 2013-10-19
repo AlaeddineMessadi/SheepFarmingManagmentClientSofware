@@ -1,6 +1,5 @@
 package gui.messages;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class retypePassword extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPasswordField passwordField;
 	byte[] Image = null;
@@ -33,7 +36,7 @@ public class retypePassword extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					retypePassword frame = new retypePassword(null, null, null, null);
+					retypePassword frame = new retypePassword(null, null, null, null,null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,9 +48,9 @@ public class retypePassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public retypePassword(final String login,final String password,final String email,final byte[] image) {
+	public retypePassword(final Admin admin ,final String login,final String password,final String email,final byte[] image) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(retypePassword.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 521, 126);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -64,25 +67,34 @@ public class retypePassword extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(90, 41, 199, 20);
 		contentPane.add(passwordField);
+		final JLabel label = new JLabel("");
+		label.setForeground(new Color(220, 20, 60));
+		label.setBounds(90, 62, 142, 14);
+		contentPane.add(label);
 		
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(login);
-				System.out.println(password);
-				System.out.println(image);
-				System.out.println(passwordField.getText());
+
 				if(password.equals(passwordField.getText().toString()) ){
 					System.out.println("goooood");
-                Admin admin = new Admin(null, null, login, password, email, null, null,image);
+                admin.setLogin(login);
+                admin.setPwd(password);
+                admin.setEmail(email);
+                admin.setPhoto(image);
 				AdminServiceDelegate.updateAdmin(admin);
-				
+				  dispose();
+				}
+				else{
+					label.setText("*Not Matched Password");
 				}
 			}
 		});
 		btnConfirm.setBounds(375, 40, 89, 23);
 		contentPane.add(btnConfirm);
+		
+
 		
 		
 	}

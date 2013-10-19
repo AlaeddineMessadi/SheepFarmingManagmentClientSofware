@@ -34,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -73,7 +74,7 @@ public class AdministratorHomeGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdministratorHomeGUI(Admin admin) {
+	public AdministratorHomeGUI(final Admin admin) {
 		setBackground(new Color(255, 255, 255));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AdministratorHomeGUI.class.getResource("/images/icon-sheep.png")));
 		setTitle("AdministratorHomeGUI");
@@ -248,51 +249,13 @@ public class AdministratorHomeGUI extends JFrame {
 		panel.add(passwordField);
 		
 		JButton btnBrowse = new JButton("Browse");
-		btnBrowse.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JFileChooser ch = new JFileChooser();
-		        ch.showOpenDialog(null);
-		        File f = ch.getSelectedFile();
-		        fileName = f.getAbsolutePath();
-		        path.setText(fileName);
-
-		        try{
-
-		            File file = new File(fileName);
-		            FileInputStream fs = new FileInputStream(file);
-		            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		            byte[] buf = new byte[1024];
-		            for (int readNum; (readNum=fs.read(buf))!=-1;) {
-
-		                bos.write(buf, 0, readNum);
-
-		            }
-		            imageUser=bos.toByteArray();
-
-		        }catch(Exception e1){
-		            JOptionPane.showMessageDialog(null, e1);
-		        }
-		        byte[] imagedata = imageUser;
-				format=new ImageIcon(imagedata);
-                image.setIcon(format);
-			
-			
-			}
-		});
+		
 		btnBrowse.setBounds(637, 328, 89, 23);
 		panel.add(btnBrowse);
 		
 		btnApply = new JButton("Apply");
 		btnApply.setEnabled(false);
-		btnApply.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-							
-				retypePassword r = new retypePassword(loginField.getText(), passwordField.getText(), emailField.getText(), imageUser);
-				r.setVisible(true);
-				
-			}
-		});
+		
 		
 		btnApply.setBounds(352, 399, 89, 23);
 		panel.add(btnApply);
@@ -345,6 +308,59 @@ public class AdministratorHomeGUI extends JFrame {
 		
 		JPanel sheepPanel = new JPanel();
 		tabbedPane.addTab("           Sheeps           ", null, sheepPanel, null);
+		
+		
+		byte[] img = admin.getPhoto();
+		System.out.println(img);
+		if(img != null){
+			System.out.println("image not null");
+		format=new ImageIcon(img);
+        image.setIcon(format);
+		}
+		
+		btnBrowse.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFileChooser ch = new JFileChooser();
+		        ch.showOpenDialog(null);
+		        File f = ch.getSelectedFile();
+		        fileName = f.getAbsolutePath();
+		        path.setText(fileName);
+                ImageHandler imgg = new ImageHandler(path.getText());
+                BufferedImage v = imgg.resizeImage();
+                
+		   /*     try{
+
+		            File file = new File(fileName);
+		            FileInputStream fs = new FileInputStream(file);
+		            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		            byte[] buf = new byte[1024];
+		            for (int readNum; (readNum=fs.read(buf))!=-1;) {
+
+		                bos.write(buf, 0, readNum);
+
+		            }
+		            imageUser=bos.toByteArray();
+
+		        }catch(Exception e1){
+		            JOptionPane.showMessageDialog(null, e1);
+		        } 
+		        */
+                imageUser = imgg.getImageBytes(v);
+				format=new ImageIcon(v);
+                image.setIcon(format);
+                testApply();
+			
+			}
+		});
+		btnApply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+							
+				retypePassword r = new retypePassword(admin ,loginField.getText(), passwordField.getText(), emailField.getText(), imageUser);
+				r.setVisible(true);
+				
+			}
+		});
 	}
 	public void testApply(){
 		if(loginField.getText().isEmpty()== false){

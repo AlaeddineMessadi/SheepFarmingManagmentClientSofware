@@ -67,8 +67,8 @@ public class TestMain {
  /*	*/	/////
 
 		
-		Employee emp1 = new Employee("aza", "ee", "ee", "ee", "ee", "ee", "ee", "ee", "ee");
-     	Employee emp2 = new  Employee("alea", null, null, null, null, null, null, null, null);
+		Employee emp1 = new Employee("aza", "ee", "ee", "ee", "ee", "ee", "ee", "ee", "ee",null);
+     	Employee emp2 = new  Employee("alea", null, null, null, null, null, null, null, null,null);
      	
 	List<Employee> emp = new ArrayList<Employee>();
 	emp.add(emp1);
