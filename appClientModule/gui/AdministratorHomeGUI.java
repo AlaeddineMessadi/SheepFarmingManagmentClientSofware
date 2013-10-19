@@ -11,6 +11,9 @@ import javax.swing.border.EmptyBorder;
 import persistance.Admin;
 import java.awt.Toolkit;
 import java.awt.Color;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -31,6 +34,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Color;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
 public class AdministratorHomeGUI extends JFrame {
 
@@ -41,9 +48,16 @@ public class AdministratorHomeGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField loginField;
 	private JTextField emailField;
-	private JTextField avatarField;
+	private JTextField path;
 	private JPasswordField passwordField;
 	private JTable table;
+	private JButton btnApply;
+	private JLabel image;
+	
+	 private ImageIcon format = null;
+     String fileName = null;
+     int s = 0;
+     byte[] sheepImage = null;
 
 	/**
 	 * Launch the application.
@@ -153,13 +167,18 @@ public class AdministratorHomeGUI extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setForeground(new Color(0, 0, 0));
-		panel_1.setBounds(58, 11, 228, 271);
+		panel_1.setBounds(25, 11, 341, 390);
 		profilPanel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		image = new JLabel();
+		image.setBounds(24, 32, 285, 319);
+		panel_1.add(image);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Informations", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(315, 138, 782, 459);
+		panel.setBounds(447, 138, 782, 459);
 		profilPanel.add(panel);
 		panel.setLayout(null);
 		
@@ -184,57 +203,107 @@ public class AdministratorHomeGUI extends JFrame {
 		panel.add(lblAvatar);
 		
 		loginField = new JTextField();
+		loginField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				testApply();
+			}
+		});
 		loginField.setBounds(408, 97, 219, 20);
 		loginField.setText(admin.getLogin());
 		panel.add(loginField);
 		loginField.setColumns(10);
 		
 		emailField = new JTextField();
+		emailField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				testApply();
+			}
+		});
 		emailField.setColumns(10);
 		emailField.setBounds(408, 253, 219, 20);
 		loginField.setText(admin.getEmail());
 		panel.add(emailField);
 		
-		avatarField = new JTextField();
-		avatarField.setColumns(10);
-		avatarField.setBounds(408, 329, 219, 20);
-		panel.add(avatarField);
+		path = new JTextField();
+		path.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				testApply();
+			}
+		});
+		path.setColumns(10);
+		path.setBounds(408, 329, 219, 20);
+		panel.add(path);
 		
 		passwordField = new JPasswordField();
 		passwordField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				
+				testApply();
 			}
 		});
 		passwordField.setBounds(408, 176, 219, 20);
 		panel.add(passwordField);
 		
 		JButton btnBrowse = new JButton("Browse");
+		btnBrowse.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFileChooser ch = new JFileChooser();
+		        ch.showOpenDialog(null);
+		        File f = ch.getSelectedFile();
+		        fileName = f.getAbsolutePath();
+		        path.setText(fileName);
+
+		        try{
+
+		            File file = new File(fileName);
+		            FileInputStream fs = new FileInputStream(file);
+		            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		            byte[] buf = new byte[1024];
+		            for (int readNum; (readNum=fs.read(buf))!=-1;) {
+
+		                bos.write(buf, 0, readNum);
+
+		            }
+		            sheepImage=bos.toByteArray();
+
+		        }catch(Exception e1){
+		            JOptionPane.showMessageDialog(null, e1);
+		        }
+		        byte[] imagedata = sheepImage;
+				format=new ImageIcon(imagedata);
+                image.setIcon(format);
+			
+			
+			}
+		});
 		btnBrowse.setBounds(637, 328, 89, 23);
 		panel.add(btnBrowse);
 		
-		JButton btnApply = new JButton("Apply");
+		btnApply = new JButton("Apply");
+		btnApply.setEnabled(false);
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(passwordField.getText()!= null){
-					retypePassword r = new retypePassword();
-					r.setVisible(true);
-				}
-			}
-		});
-		btnApply.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+				
+				String login = loginField.getText();
+				String pw = passwordField.getText();
+				String email = emailField.getText();
+			//	String path = path.getText();
+			//	retypePassword r = new retypePassword();
+			//	r.setVisible(true);
 				
 			}
 		});
+		
 		btnApply.setBounds(352, 399, 89, 23);
 		panel.add(btnApply);
 		
 		JLabel lblWelcomeAdmin = new JLabel("WELCOME ADMIN");
 		lblWelcomeAdmin.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 44));
-		lblWelcomeAdmin.setBounds(673, 45, 245, 43);
+		lblWelcomeAdmin.setBounds(684, 45, 245, 43);
 		profilPanel.add(lblWelcomeAdmin);
 		
 		JPanel farmPanel = new JPanel();
@@ -280,5 +349,17 @@ public class AdministratorHomeGUI extends JFrame {
 		
 		JPanel sheepPanel = new JPanel();
 		tabbedPane.addTab("           Sheeps           ", null, sheepPanel, null);
+	}
+	public void testApply(){
+		if(loginField.getText().isEmpty()== false){
+			if(passwordField.getText().isEmpty()== false){
+				if(emailField.getText().isEmpty()== false){
+					if(path.getText().isEmpty()== false){
+						btnApply.setEnabled(true);
+					}
+					
+				}
+			}
+		}
 	}
 }

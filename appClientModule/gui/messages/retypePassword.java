@@ -17,6 +17,7 @@ public class retypePassword extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
+	byte[] Image = null;
 
 	/**
 	 * Launch the application.
@@ -25,7 +26,7 @@ public class retypePassword extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					retypePassword frame = new retypePassword();
+					retypePassword frame = new retypePassword(null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +38,7 @@ public class retypePassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public retypePassword() {
+	public retypePassword(String login,String passwork,String email,String fileName) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(retypePassword.class.getResource("/images/icon-sheep.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 521, 126);
@@ -60,5 +61,7 @@ public class retypePassword extends JFrame {
 		JButton btnConfirm = new JButton("Confirm");
 		btnConfirm.setBounds(375, 40, 89, 23);
 		contentPane.add(btnConfirm);
+		
+		
 	}
 }
