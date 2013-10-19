@@ -22,10 +22,10 @@ import java.awt.Toolkit;
 public class FarmModify extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtName;
+	private JTextField txtAdress;
+	private JTextField txtTel;
+	private JTextField txtEmail;
 
 	/**
 	 * Launch the application.
@@ -87,25 +87,25 @@ public class FarmModify extends JFrame {
 		lblEmail.setBounds(75, 186, 61, 14);
 		panel.add(lblEmail);
 		
-		textField = new JTextField();
-		textField.setBounds(191, 44, 159, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtName = new JTextField();
+		txtName.setBounds(191, 44, 159, 20);
+		panel.add(txtName);
+		txtName.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(191, 92, 159, 20);
-		panel.add(textField_1);
+		txtAdress = new JTextField();
+		txtAdress.setColumns(10);
+		txtAdress.setBounds(191, 92, 159, 20);
+		panel.add(txtAdress);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(192, 137, 158, 20);
-		panel.add(textField_2);
+		txtTel = new JTextField();
+		txtTel.setColumns(10);
+		txtTel.setBounds(192, 137, 158, 20);
+		panel.add(txtTel);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(191, 180, 159, 20);
-		panel.add(textField_3);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(191, 180, 159, 20);
+		panel.add(txtEmail);
 		
 		JButton btnModify = new JButton("Modify");
 		btnModify.setFont(new Font("Times New Roman", Font.BOLD, 11));
