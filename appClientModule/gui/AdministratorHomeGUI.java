@@ -57,7 +57,7 @@ public class AdministratorHomeGUI extends JFrame {
 	 private ImageIcon format = null;
      String fileName = null;
      int s = 0;
-     byte[] sheepImage = null;
+     byte[] imageUser = null;
 
 	/**
 	 * Launch the application.
@@ -268,12 +268,12 @@ public class AdministratorHomeGUI extends JFrame {
 		                bos.write(buf, 0, readNum);
 
 		            }
-		            sheepImage=bos.toByteArray();
+		            imageUser=bos.toByteArray();
 
 		        }catch(Exception e1){
 		            JOptionPane.showMessageDialog(null, e1);
 		        }
-		        byte[] imagedata = sheepImage;
+		        byte[] imagedata = imageUser;
 				format=new ImageIcon(imagedata);
                 image.setIcon(format);
 			
@@ -287,13 +287,9 @@ public class AdministratorHomeGUI extends JFrame {
 		btnApply.setEnabled(false);
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String login = loginField.getText();
-				String pw = passwordField.getText();
-				String email = emailField.getText();
-			//	String path = path.getText();
-			//	retypePassword r = new retypePassword();
-			//	r.setVisible(true);
+							
+				retypePassword r = new retypePassword(loginField.getText(), passwordField.getText(), emailField.getText(), imageUser);
+				r.setVisible(true);
 				
 			}
 		});

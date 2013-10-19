@@ -50,9 +50,9 @@ public class TestMain {
 
 		
 
-	//   Farm f = new Farm(0, "FarmaVille", "Nabeul");
-    //   FarmServicesDelegate.createFarm(f);
- /*	  	 Farm f1 = new Farm(); 
+	   Farm f = new Farm(0, "FarmaVille", "Nabeul");
+       FarmServicesDelegate.createFarm(f);
+	  	 Farm f1 = new Farm(); 
 	    f1= FarmServicesDelegate.findFarmById(1);
 		System.out.println(f1.toString());
 		
@@ -64,7 +64,7 @@ public class TestMain {
 
 		f1.BatimentToFarm(batiments);
 		FarmServicesDelegate.batimentToFarm(f1,batiments);
-	*/	/////
+ /*	*/	/////
 
 		
 		Employee emp1 = new Employee("aza", "ee", "ee", "ee", "ee", "ee", "ee", "ee", "ee");
@@ -77,7 +77,7 @@ public class TestMain {
 	Batiment b = BatimentServiceDelegate.findBatimentById(1);
 	BatimentServiceDelegate.EmployeeToBatiment(b,emp);
 	
-	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa");
+	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
 	AdminServiceDelegate.createAdmin(a);
 /*	*/  //////////////
 

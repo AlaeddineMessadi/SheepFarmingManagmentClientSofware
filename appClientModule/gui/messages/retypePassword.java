@@ -13,6 +13,13 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+import delegate.AdminServiceDelegate;
+
+import persistance.Admin;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class retypePassword extends JFrame {
 
 	private JPanel contentPane;
@@ -38,7 +45,7 @@ public class retypePassword extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public retypePassword(String login,String passwork,String email,String fileName) {
+	public retypePassword(final String login,final String password,final String email,final byte[] image) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(retypePassword.class.getResource("/images/icon-sheep.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 521, 126);
@@ -59,6 +66,21 @@ public class retypePassword extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(login);
+				System.out.println(password);
+				System.out.println(image);
+				System.out.println(passwordField.getText());
+				if(password.equals(passwordField.getText().toString()) ){
+					System.out.println("goooood");
+                Admin admin = new Admin(null, null, login, password, email, null, null,image);
+				AdminServiceDelegate.updateAdmin(admin);
+				
+				}
+			}
+		});
 		btnConfirm.setBounds(375, 40, 89, 23);
 		contentPane.add(btnConfirm);
 		
