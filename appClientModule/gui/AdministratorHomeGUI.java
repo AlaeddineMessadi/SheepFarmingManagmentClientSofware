@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import persistance.Admin;
+import persistance.Farm;
+
 import java.awt.Toolkit;
 import java.awt.Color;
 
@@ -31,6 +33,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import delegate.FarmServicesDelegate;
+
 import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -39,6 +44,7 @@ import java.awt.Color;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
 public class AdministratorHomeGUI extends JFrame {
 
@@ -276,14 +282,23 @@ public class AdministratorHomeGUI extends JFrame {
 		panel_2.setLayout(null);
 		/*************/
 		table = new JTable();
+		List<Farm> list = FarmServicesDelegate.getFarms();
+		String[] s = {"Id","Name","Address"};
+		Object[][] o = new String[list.size()][3];
+		//DefaultTableModel m = new DefaultTableModel();
+		
+		
+		for(int i=0;i<list.size();i++){
+			
+			o[i][0]=String.valueOf(list.get(i).getIdFarm());
+			o[i][1]=list.get(i).getNomFarm();
+			o[i][2]=list.get(i).getAdress();
+			
+		}
 		table.setBackground(SystemColor.activeCaption);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
+	     table.setModel(new DefaultTableModel(o,s));
+	/*	*/
+		
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		table.setBounds(59, 47, 459, 309);
@@ -374,4 +389,5 @@ public class AdministratorHomeGUI extends JFrame {
 			}
 		}
 	}
+	
 }

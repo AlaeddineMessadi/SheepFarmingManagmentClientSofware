@@ -2,9 +2,7 @@ package gui;
 
 import java.awt.EventQueue;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,8 +13,6 @@ import java.io.IOException;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
@@ -25,7 +21,6 @@ import delegate.UserServiceDelegate;
 import persistance.Admin;
 import persistance.Employee;
 import persistance.User;
-import services.userServices.UserServicesRemote;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -159,8 +154,7 @@ public class AuthenticationGUI extends JFrame {
 					} else if (user.getClass().equals(admin.getClass())) {
 						admin = (Admin) UserServiceDelegate.findUserById(user
 								.getIdUser());
-						AdministratorHomeGUI admingui = new AdministratorHomeGUI(
-								admin);
+						AdministratorHomeGUI admingui = new AdministratorHomeGUI(admin);
 						admingui.setVisible(true);
 						setVisible(false);
 					} else {
