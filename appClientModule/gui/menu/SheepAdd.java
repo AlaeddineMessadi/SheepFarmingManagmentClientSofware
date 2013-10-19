@@ -70,10 +70,10 @@ public class SheepAdd extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblCode = new JLabel("Code : ");
-		lblCode.setBounds(24, 11, 65, 14);
-		lblCode.setFont(new Font("Times New Roman", Font.BOLD, 16));
-		panel.add(lblCode);
+		JLabel lblId = new JLabel("Id : ");
+		lblId.setBounds(24, 11, 65, 14);
+		lblId.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		panel.add(lblId);
 		
 		JLabel lblDatebirth = new JLabel("Date_birth :");
 		lblDatebirth.setBounds(24, 89, 89, 14);
