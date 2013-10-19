@@ -24,7 +24,7 @@ public class FarmAdd extends JFrame {
 	private JTextField txtName;
 	private JTextField txtAdress;
 	private JTextField txtTel;
-	private JTextField textField;
+	private JTextField txtEmail;
 
 	/**
 	 * Launch the application.
@@ -116,12 +116,12 @@ public class FarmAdd extends JFrame {
 		lblEmail.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		panel.add(lblEmail);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		textField.setBounds(169, 241, 182, 20);
-		textField.setText("\r\n");
-		textField.setColumns(10);
-		panel.add(textField);
+		txtEmail = new JTextField();
+		txtEmail.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtEmail.setBounds(169, 241, 182, 20);
+		txtEmail.setText("\r\n");
+		txtEmail.setColumns(10);
+		panel.add(txtEmail);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(463, 408, 114, 23);
