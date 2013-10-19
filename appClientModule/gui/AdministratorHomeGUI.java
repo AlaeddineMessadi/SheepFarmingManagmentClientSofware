@@ -18,6 +18,7 @@ import java.awt.Color;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -46,6 +47,7 @@ import java.awt.Color;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdministratorHomeGUI extends JFrame {
@@ -62,6 +64,7 @@ public class AdministratorHomeGUI extends JFrame {
 	private JTable table;
 	private JButton btnApply;
 	private JLabel image;
+	private JScrollPane scrollPane ;
 	
 	 private ImageIcon format = null;
      String fileName = null;
@@ -74,7 +77,9 @@ public class AdministratorHomeGUI extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				
+				Admin ad = new Admin();
+				AdministratorHomeGUI a = new AdministratorHomeGUI(ad);
+				a.setVisible(true);
 			}
 		});
 	}
@@ -302,10 +307,11 @@ public class AdministratorHomeGUI extends JFrame {
 		farmPanel.add(panel_2);
 		panel_2.setLayout(null);
 		/*************/
+		
 		table = new JTable();
 		List<Farm> list = FarmServicesDelegate.getFarms();
-		String[] s = {"Id","Name","Address"};
-		Object[][] o = new String[list.size()][3];
+	    String[] s = {"Id","Name","Address","E-mail","Phone"};
+		Object[][] o = new String[list.size()][5];
 		//DefaultTableModel m = new DefaultTableModel();
 		
 		
@@ -314,16 +320,38 @@ public class AdministratorHomeGUI extends JFrame {
 			o[i][0]=String.valueOf(list.get(i).getIdFarm());
 			o[i][1]=list.get(i).getNomFarm();
 			o[i][2]=list.get(i).getAdress();
+			o[i][3]=list.get(i).getMail();
+			o[i][4]=list.get(i).getTelephone();
 			
 		}
 		table.setBackground(SystemColor.activeCaption);
+		
 	     table.setModel(new DefaultTableModel(o,s));
+	     table.getColumnModel().getColumn(0).setPreferredWidth(5);
+	     table.getColumnModel().getColumn(3).setPreferredWidth(150);
+
+	     DefaultTableModel model = (DefaultTableModel)table.getModel();
+	     model.fireTableDataChanged();
 	/*	*/
 		
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		table.setBounds(59, 47, 459, 309);
-		panel_2.add(table);
+		
+		 scrollPane = new JScrollPane(table);
+		 
+		
+		 scrollPane.addMouseListener(new MouseAdapter() {
+		 	@Override
+		 	public void mouseReleased(MouseEvent e) {
+		 		 int selectedRows = table.getSelectedRow();
+				 
+		 		String a = (String) table.getModel().getValueAt(selectedRows, 0);
+		 		System.out.println(a);
+		 	}
+		 });
+		 scrollPane.setBounds(59, 47, 459, 309);
+		panel_2.add(scrollPane);
 		/******/
 		
 		
@@ -410,5 +438,6 @@ public class AdministratorHomeGUI extends JFrame {
 			}
 		}
 	}
+	
 	
 }

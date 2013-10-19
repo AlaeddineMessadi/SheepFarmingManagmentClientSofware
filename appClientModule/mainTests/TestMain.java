@@ -42,17 +42,13 @@ public class TestMain {
 	 */
 	
 	public static void main(String[] args) throws Exception {
-		AdminServicesRemote admin = null ;
-		EmployeeServicesRemote employee = null ;
-		FarmServicesRemote farm = null ;
-		BatimentServicesRemote batiment = null ;
-		SheepServicesRemote sheep = null ;
+
 
 		
 
-	   Farm f = new Farm(0, "FarmaVille", "Nabeul");
+	   Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
        FarmServicesDelegate.createFarm(f);
-	  	 Farm f1 = new Farm(); 
+/*	  	 Farm f1 = new Farm(); 
 	  	 
 	    f1= FarmServicesDelegate.findFarmById(1);
 		System.out.println(f1.toString());
@@ -65,7 +61,7 @@ public class TestMain {
 
 		f1.BatimentToFarm(batiments);
 		FarmServicesDelegate.batimentToFarm(f1,batiments);
- /*	*/	/////
+ 	/////
 
 		
 		Employee emp1 = new Employee("aza", "ee", "ee", "ee", "ee", "ee", "ee", "ee", "ee",null);
@@ -80,7 +76,7 @@ public class TestMain {
 	
 	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
 	AdminServiceDelegate.createAdmin(a);
-/*	*/  //////////////
+	*/  //////////////
 
 		
 /*		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");
