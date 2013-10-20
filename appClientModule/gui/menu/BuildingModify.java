@@ -1,6 +1,5 @@
 package gui.menu;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,6 +20,10 @@ import java.awt.Toolkit;
 
 public class BuildingModify extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtCapacity;
@@ -60,6 +63,10 @@ public class BuildingModify extends JFrame {
 		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"Building 1 ", "Building 2", "Building 3", "Building 4", "Building 5", "...", "...", "..."};
 			public int getSize() {
 				return values.length;

@@ -1,6 +1,5 @@
 package gui.menu;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,11 +13,14 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.JTextField;
 import java.awt.Toolkit;
 
 public class FarmDelete extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -56,6 +58,10 @@ public class FarmDelete extends JFrame {
 		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"Name 1 ", "Name 2 ", "Name 3 ", "Name 4"};
 			public int getSize() {
 				return values.length;

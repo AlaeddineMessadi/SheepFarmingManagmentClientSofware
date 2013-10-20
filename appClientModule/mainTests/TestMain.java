@@ -8,29 +8,14 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.sun.swing.internal.plaf.basic.resources.basic;
 
 import delegate.AdminServiceDelegate;
 import delegate.BatimentServiceDelegate;
-import delegate.EmployeeServiceDelegate;
 import delegate.FarmServicesDelegate;
-import delegate.SheepServicesDelegate;
-import delegate.UserServiceDelegate;
-import delegate.VaccineServicesDelegate;
-
-
 import persistance.Admin;
 import persistance.Batiment;
 import persistance.Employee;
 import persistance.Farm;
-import persistance.Sheep;
-import persistance.User;
-import persistance.Vaccine;
-import services.adminServices.AdminServicesRemote;
-import services.batimentServices.BatimentServicesRemote;
-import services.employeeServices.EmployeeServicesRemote;
-import services.farmServices.FarmServicesRemote;
-import services.sheepServices.SheepServicesRemote;
 
 
 public class TestMain {
@@ -46,9 +31,7 @@ public class TestMain {
 	public static void main(String[] args) throws Exception {
 
 
-		   Vaccine vaccin = new Vaccine("jj", new Date());
 
-	       VaccineServicesDelegate.createVaccine(vaccin);
 
 	   //Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
        //FarmServicesDelegate.createFarm(f);

@@ -3,9 +3,7 @@ package delegate;
 import java.util.List;
 
 import locator.ServiceLocator;
-import persistance.Admin;
 import persistance.Vaccine;
-import services.adminServices.AdminServicesRemote;
 import services.vaccineServices.VaccineServicesRemote;
 
 public class VaccineServicesDelegate {

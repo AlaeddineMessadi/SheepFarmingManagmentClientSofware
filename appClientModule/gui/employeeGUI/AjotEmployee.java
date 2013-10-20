@@ -1,12 +1,9 @@
 package gui.employeeGUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -21,6 +18,10 @@ import persistance.Employee;
 
 public class AjotEmployee extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField name;
 	private JTextField adresse;

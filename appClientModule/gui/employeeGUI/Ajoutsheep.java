@@ -1,10 +1,7 @@
 package gui.employeeGUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -23,6 +20,10 @@ import persistance.Sheep;
 
 public class Ajoutsheep extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
