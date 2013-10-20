@@ -17,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SheepModify extends JFrame {
 
@@ -46,7 +48,7 @@ public class SheepModify extends JFrame {
 	 */
 	public SheepModify() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SheepModify.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 665, 435);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -140,6 +142,10 @@ public class SheepModify extends JFrame {
 		contentPane.add(btnModify);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();			}
+		});
 		btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCancel.setBounds(521, 353, 89, 23);
 		contentPane.add(btnCancel);

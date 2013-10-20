@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FarmDelete extends JFrame {
 
@@ -44,7 +46,7 @@ public class FarmDelete extends JFrame {
 	 */
 	public FarmDelete() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FarmDelete.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 620, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,6 +82,11 @@ public class FarmDelete extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancel\r\n");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnNewButton_1.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnNewButton_1.setBounds(475, 352, 89, 23);
 		contentPane.add(btnNewButton_1);

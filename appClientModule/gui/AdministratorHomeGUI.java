@@ -1,7 +1,14 @@
 package gui;
 
+import gui.menu.BuildingAdd;
+import gui.menu.BuildingDelete;
+import gui.menu.BuildingModify;
 import gui.menu.FarmAdd;
+import gui.menu.FarmDelete;
 import gui.menu.FarmModify;
+import gui.menu.SheepAdd;
+import gui.menu.SheepDelete;
+import gui.menu.SheepModify;
 import gui.messages.retypePassword;
 
 import java.awt.EventQueue;
@@ -53,6 +60,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
@@ -149,36 +158,84 @@ public class AdministratorHomeGUI extends JFrame {
 		mnFarm.add(mntmModifyFarm);
 		
 		JMenuItem mntmDeleteFarm = new JMenuItem("Delete Farm");
+		mntmDeleteFarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			FarmDelete bd=new FarmDelete();
+			bd.setVisible(true);
+			}
+		});
 		mnFarm.add(mntmDeleteFarm);
 		
 		JMenu mnBatiment = new JMenu("Batiment");
 		menuBar.add(mnBatiment);
 		
 		JMenuItem mntmAddBatiment = new JMenuItem("Add Batiment");
+		mntmAddBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuildingAdd ba= new BuildingAdd();
+				ba.setVisible(true);
+				
+			}
+		});
 		mnBatiment.add(mntmAddBatiment);
 		
 		JMenuItem mntmModifyBatiment = new JMenuItem("Modify Batiment");
+		mntmModifyBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuildingModify bm=new BuildingModify();
+				bm.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmModifyBatiment);
 		
 		JMenuItem mntmDeleteBatiment = new JMenuItem("Delete Batiment");
+		mntmDeleteBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuildingDelete bd=new BuildingDelete();
+				bd.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmDeleteBatiment);
 		
 		JMenu mnSheeps = new JMenu("Sheeps");
 		menuBar.add(mnSheeps);
 		
 		JMenuItem mntmAddSheep = new JMenuItem("Add Sheep");
+		mntmAddSheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SheepAdd sa=new SheepAdd();
+				sa.setVisible(true);
+				
+			}
+		});
 		mnSheeps.add(mntmAddSheep);
 		
 		JMenuItem mntmModifySheep = new JMenuItem("Modify Sheep");
+		mntmModifySheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SheepModify sm=new SheepModify();
+				sm.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmModifySheep);
 		
 		JMenuItem mntmDeleteSheep = new JMenuItem("Delete Sheep");
+		mntmDeleteSheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SheepDelete sd=new SheepDelete();
+				sd.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmDeleteSheep);
 		
 		JMenu mnEmployees = new JMenu("Employees");
 		menuBar.add(mnEmployees);
 		
 		JMenuItem mntmAddEmployee = new JMenuItem("Add Employee");
+		mntmAddEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mnEmployees.add(mntmAddEmployee);
 		
 		JMenuItem mntmModifyEmployee = new JMenuItem("Modify Employee");
