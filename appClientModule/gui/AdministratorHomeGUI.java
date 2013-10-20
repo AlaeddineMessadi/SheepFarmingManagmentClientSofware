@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.awt.Color;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
@@ -44,6 +45,8 @@ import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
+import javax.swing.border.LineBorder;
+import java.awt.event.MouseMotionAdapter;
 
 public class AdministratorHomeGUI extends JFrame {
 
@@ -65,6 +68,14 @@ public class AdministratorHomeGUI extends JFrame {
      String fileName = null;
      int s = 0;
      byte[] imageUser = null;
+     private JTextField nomFarmField;
+     private JTextField AdressFarmField;
+     private JTextField phoneFarmField;
+     private JTextField emailFarmField;
+     private JLabel idFarmField ;
+     private  Farm f = null;
+     private List<Farm> list ;
+     JFrame alert = new JFrame();
 
 	/**
 	 * Launch the application.
@@ -298,13 +309,13 @@ public class AdministratorHomeGUI extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(24, 49, 607, 546);
+		panel_2.setBounds(24, 49, 566, 546);
 		farmPanel.add(panel_2);
 		panel_2.setLayout(null);
 		/*************/
 		
 		table = new JTable();
-		List<Farm> list = FarmServicesDelegate.getFarms();
+		list = FarmServicesDelegate.getFarms();
 	    String[] s = {"Id","Name","Address","E-mail","Phone"};
 		Object[][] o = new String[list.size()][5];
 		//DefaultTableModel m = new DefaultTableModel();
@@ -317,8 +328,9 @@ public class AdministratorHomeGUI extends JFrame {
 			o[i][2]=list.get(i).getAdress();
 			o[i][3]=list.get(i).getMail();
 			o[i][4]=list.get(i).getTelephone();
-			
+			System.out.println(i);
 		}
+
 		table.setBackground(SystemColor.activeCaption);
 		
 	     table.setModel(new DefaultTableModel(o,s));
@@ -330,22 +342,18 @@ public class AdministratorHomeGUI extends JFrame {
 	/*	*/
 		
 		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
+		table.setCellSelectionEnabled(false);
 		table.setBounds(59, 47, 459, 309);
 		
 		 scrollPane = new JScrollPane(table);
-		 
-		
-		 scrollPane.addMouseListener(new MouseAdapter() {
-		 	@Override
-		 	public void mouseReleased(MouseEvent e) {
-		 		 int selectedRows = table.getSelectedRow();
-				 
-		 		String a = (String) table.getModel().getValueAt(selectedRows, 0);
-		 		System.out.println(a);
-		 	}
-		 });
-		 scrollPane.setBounds(59, 47, 459, 309);
+		 table.addMouseListener(new MouseAdapter() {
+			 	@Override
+			 	public void mouseClicked(MouseEvent e) {
+			 		viewSelectedFarm();
+			 		
+			 	}
+			 });
+		 scrollPane.setBounds(53, 54, 459, 438);
 		panel_2.add(scrollPane);
 		/******/
 		
@@ -355,9 +363,130 @@ public class AdministratorHomeGUI extends JFrame {
 		/************/
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(723, 49, 607, 546);
+		panel_3.setBounds(705, 49, 625, 546);
 		farmPanel.add(panel_3);
 		panel_3.setLayout(null);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		panel_4.setBounds(74, 99, 477, 380);
+		panel_3.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel lblIdFarm = new JLabel("Id Farm       :");
+		lblIdFarm.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdFarm.setBounds(48, 44, 85, 23);
+		panel_4.add(lblIdFarm);
+		
+		JLabel lblNomFarm = new JLabel("Nom Farm    :");
+		lblNomFarm.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNomFarm.setBounds(48, 111, 85, 23);
+		panel_4.add(lblNomFarm);
+		
+		JLabel lblAdressFarm = new JLabel("Adress Farm :");
+		lblAdressFarm.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblAdressFarm.setBounds(48, 178, 85, 23);
+		panel_4.add(lblAdressFarm);
+		
+		JLabel lblPhoneFarm = new JLabel("Phone Farm  :");
+		lblPhoneFarm.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPhoneFarm.setBounds(48, 245, 85, 23);
+		panel_4.add(lblPhoneFarm);
+		
+		JLabel lblFarm = new JLabel(" E-mail Farm :");
+		lblFarm.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblFarm.setBounds(48, 312, 85, 23);
+		panel_4.add(lblFarm);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(192, 192, 192));
+		panel_5.setBounds(198, 11, 247, 358);
+		panel_4.add(panel_5);
+		panel_5.setLayout(null);
+		
+		idFarmField = new JLabel("");
+		idFarmField.setBounds(72, 30, 96, 21);
+		panel_5.add(idFarmField);
+		
+		nomFarmField = new JTextField();
+		nomFarmField.setBounds(10, 95, 227, 20);
+		panel_5.add(nomFarmField);
+		nomFarmField.setColumns(10);
+		
+		AdressFarmField = new JTextField();
+		AdressFarmField.setColumns(10);
+		AdressFarmField.setBounds(10, 167, 227, 20);
+		panel_5.add(AdressFarmField);
+		
+		phoneFarmField = new JTextField();
+		phoneFarmField.setColumns(10);
+		phoneFarmField.setBounds(10, 233, 227, 20);
+		panel_5.add(phoneFarmField);
+		
+		emailFarmField = new JTextField();
+		emailFarmField.setColumns(10);
+		emailFarmField.setBounds(10, 298, 227, 20);
+		panel_5.add(emailFarmField);
+		
+		JLabel lblFarmDetails = new JLabel("Farm Details");
+		lblFarmDetails.setFont(new Font("Sitka Text", Font.BOLD, 20));
+		lblFarmDetails.setBounds(239, 31, 146, 26);
+		panel_3.add(lblFarmDetails);
+		
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				f.setAdress(AdressFarmField.getText());
+				f.setMail(emailFarmField.getText());
+				f.setTelephone(phoneFarmField.getText());
+				f.setNomFarm(nomFarmField.getText());
+				FarmServicesDelegate.updateFarm(f);
+				list = FarmServicesDelegate.getFarms();
+				 
+				
+				 JOptionPane.showMessageDialog(alert, "Update Done !");
+				 viewSelectedFarm();
+				 
+			}
+		});
+		btnUpdate.setBounds(89, 512, 89, 23);
+		panel_3.add(btnUpdate);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				f.setAdress(AdressFarmField.getText());
+				f.setMail(emailFarmField.getText());
+				f.setTelephone(phoneFarmField.getText());
+				f.setNomFarm(nomFarmField.getText());
+				FarmServicesDelegate.deleteFarm(f);
+				list = FarmServicesDelegate.getFarms();
+				
+				 viewSelectedFarm();
+				 JOptionPane.showMessageDialog(alert, "Delete Done !");
+			}
+		});
+		btnDelete.setBounds(267, 512, 89, 23);
+		panel_3.add(btnDelete);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Farm newfarm = new Farm();
+				newfarm.setAdress(AdressFarmField.getText());
+				newfarm.setMail(emailFarmField.getText());
+				newfarm.setTelephone(phoneFarmField.getText());
+				newfarm.setNomFarm(nomFarmField.getText());
+				FarmServicesDelegate.createFarm(newfarm);
+				list = FarmServicesDelegate.getFarms();
+				
+				 viewSelectedFarm();
+				 JOptionPane.showMessageDialog(alert, "Add Done !");
+			}
+		});
+		btnAdd.setBounds(445, 512, 89, 23);
+		panel_3.add(btnAdd);
 		
 		JPanel batimentPanel = new JPanel();
 		tabbedPane.addTab("           Batiments           ", null, batimentPanel, null);
@@ -370,9 +499,9 @@ public class AdministratorHomeGUI extends JFrame {
 		
 		
 		byte[] img = admin.getPhoto();
-		System.out.println(img);
+		
 		if(img != null){
-			System.out.println("image not null");
+			
 		format=new ImageIcon(img);
         image.setIcon(format);
 		}
@@ -387,24 +516,6 @@ public class AdministratorHomeGUI extends JFrame {
 		        path.setText(fileName);
                 ImageHandler imgg = new ImageHandler(path.getText());
                 BufferedImage v = imgg.resizeImage();
-                
-		   /*     try{
-
-		            File file = new File(fileName);
-		            FileInputStream fs = new FileInputStream(file);
-		            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		            byte[] buf = new byte[1024];
-		            for (int readNum; (readNum=fs.read(buf))!=-1;) {
-
-		                bos.write(buf, 0, readNum);
-
-		            }
-		            imageUser=bos.toByteArray();
-
-		        }catch(Exception e1){
-		            JOptionPane.showMessageDialog(null, e1);
-		        } 
-		        */
                 imageUser = imgg.getImageBytes(v);
 				format=new ImageIcon(v);
                 image.setIcon(format);
@@ -422,6 +533,22 @@ public class AdministratorHomeGUI extends JFrame {
 			}
 		});
 	}
+	protected void viewSelectedFarm() {
+		int id =  Integer.parseInt(table.getValueAt(table.getSelectedRow(),0).toString());
+ 		
+ 		for(Farm m : list){
+ 			if(m.getIdFarm()==id){
+ 				 f = m ;
+ 			}
+ 		}
+ 		idFarmField.setText(String.valueOf(f.getIdFarm()));
+ 		nomFarmField.setText(f.getNomFarm());
+ 		AdressFarmField.setText(f.getAdress());
+ 		phoneFarmField.setText(f.getTelephone());
+ 		emailFarmField.setText(f.getMail());
+		
+	}
+
 	@SuppressWarnings("deprecation")
 	public void testApply(){
 		if(loginField.getText().isEmpty()== false){
@@ -435,6 +562,4 @@ public class AdministratorHomeGUI extends JFrame {
 			}
 		}
 	}
-	
-	
 }
