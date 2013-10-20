@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 
+import delegate.FarmServicesDelegate;
+
 import persistance.Farm;
 import services.farmServices.FarmServicesRemote;
 
@@ -34,6 +36,7 @@ public class FarmAdd extends JFrame {
 	private JTextField txtAdress;
 	private JTextField txtTel;
 	private JTextField txtEmail;
+	private JLabel labelnote;
 
 	/**
 	 * Launch the application.
@@ -56,7 +59,7 @@ public class FarmAdd extends JFrame {
 	 */
 	public FarmAdd() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FarmAdd.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 647, 503);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,29 +72,7 @@ public class FarmAdd extends JFrame {
 		contentPane.add(lblAddFarm);
 		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FarmServicesRemote gestion = null;
-				try {
-				Context context =new InitialContext();
-				
-				Object o=context.lookup("ejb:/SheepFarmingManagment/FarmServices!services.farmServices.FarmServicesRemote");
-				gestion=(FarmServicesRemote) o;
-				Farm farm=new Farm();
-				farm.setNomFarm(txtName.getText());
-				farm.setAdress(txtAdress.getText());
-				farm.setTelephone(txtTel.getText());
-				farm.setMail(txtEmail.getText());
-				
-            	gestion.createFarm(farm);
-				} catch (Exception ex) {
-					// TODO Auto-generated catch block
-					ex.printStackTrace();
-				}
-			
-				
-			}
-		});
+		
 		btnAdd.setBounds(52, 408, 113, 23);
 		btnAdd.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		contentPane.add(btnAdd);
@@ -152,8 +133,37 @@ public class FarmAdd extends JFrame {
 		panel.add(txtEmail);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancel.setBounds(463, 408, 114, 23);
 		btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		contentPane.add(btnCancel);
+		
+		labelnote = new JLabel("");
+		labelnote.setBounds(250, 370, 149, 14);
+		contentPane.add(labelnote);
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if(txtTel.getText().matches("[0-9]*")==false){
+					labelnote.setText("Wrong Phone Number");
+				}else
+					if ((txtEmail.getText().contains(" ") == false) && (txtEmail.getText().matches(".+@.+\\.[a-z]+"))){
+					labelnote.setText("Wrong Email");
+				}else{
+					Farm farm=new Farm();
+					farm.setNomFarm(txtName.getText());
+					farm.setAdress(txtAdress.getText());
+					farm.setTelephone(txtTel.getText());
+					farm.setMail(txtEmail.getText());	
+	            	FarmServicesDelegate.createFarm(farm);
+				    dispose();
+				}
+				
+			}
+		});
 	}
 }

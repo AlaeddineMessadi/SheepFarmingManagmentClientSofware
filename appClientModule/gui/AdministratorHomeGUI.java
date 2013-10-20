@@ -44,9 +44,17 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.border.LineBorder;
 import java.awt.event.MouseMotionAdapter;
+import javax.swing.JScrollBar;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class AdministratorHomeGUI extends JFrame {
 
@@ -74,8 +82,14 @@ public class AdministratorHomeGUI extends JFrame {
      private JTextField emailFarmField;
      private JLabel idFarmField ;
      private  Farm f = null;
-     private List<Farm> list ;
+     private  List<Farm> list = new ArrayList<Farm>() ;
      JFrame alert = new JFrame();
+	private JLabel farmNote;
+	private JTable tableBatiment;
+	private JTable tableSheepB;
+	private JTable tableEmployeeB;
+	private JTextField capacityBatimentField;
+	private JTextField FarmBatimentField;
 
 	/**
 	 * Launch the application.
@@ -121,15 +135,7 @@ public class AdministratorHomeGUI extends JFrame {
 				m.setVisible(true);
 			}
 		});
-		mntmAddFarm.addMouseListener(new MouseAdapter() {
-			@Override
-	
-			public void mouseClicked(MouseEvent e) {
-				FarmAdd m=new FarmAdd();
-				m.setVisible(true);
-				
-			}
-		});
+
 		mnFarm.add(mntmAddFarm);
 		
 		JMenuItem mntmModifyFarm = new JMenuItem("Modify Farm");
@@ -331,9 +337,10 @@ public class AdministratorHomeGUI extends JFrame {
 			System.out.println(i);
 		}
 
-		table.setBackground(SystemColor.activeCaption);
+		
 		
 	     table.setModel(new DefaultTableModel(o,s));
+	     table.setBackground(SystemColor.activeCaption);
 	     table.getColumnModel().getColumn(0).setPreferredWidth(5);
 	     table.getColumnModel().getColumn(3).setPreferredWidth(150);
 
@@ -355,6 +362,15 @@ public class AdministratorHomeGUI extends JFrame {
 			 });
 		 scrollPane.setBounds(53, 54, 459, 438);
 		panel_2.add(scrollPane);
+		
+		JButton btnRefresh = new JButton("Refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				refreshTable();
+			}
+		});
+		btnRefresh.setBounds(485, 11, 71, 23);
+		panel_2.add(btnRefresh);
 		/******/
 		
 		
@@ -428,68 +444,163 @@ public class AdministratorHomeGUI extends JFrame {
 		emailFarmField.setBounds(10, 298, 227, 20);
 		panel_5.add(emailFarmField);
 		
+		 farmNote = new JLabel("");
+		farmNote.setForeground(new Color(220, 20, 60));
+		farmNote.setBounds(10, 355, 143, 14);
+		panel_4.add(farmNote);
+		
 		JLabel lblFarmDetails = new JLabel("Farm Details");
 		lblFarmDetails.setFont(new Font("Sitka Text", Font.BOLD, 20));
 		lblFarmDetails.setBounds(239, 31, 146, 26);
 		panel_3.add(lblFarmDetails);
 		
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				f.setAdress(AdressFarmField.getText());
-				f.setMail(emailFarmField.getText());
-				f.setTelephone(phoneFarmField.getText());
-				f.setNomFarm(nomFarmField.getText());
-				FarmServicesDelegate.updateFarm(f);
-				list = FarmServicesDelegate.getFarms();
-				 
-				
-				 JOptionPane.showMessageDialog(alert, "Update Done !");
-				 viewSelectedFarm();
-				 
-			}
-		});
+		
 		btnUpdate.setBounds(89, 512, 89, 23);
 		panel_3.add(btnUpdate);
 		
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				f.setAdress(AdressFarmField.getText());
-				f.setMail(emailFarmField.getText());
-				f.setTelephone(phoneFarmField.getText());
-				f.setNomFarm(nomFarmField.getText());
-				FarmServicesDelegate.deleteFarm(f);
-				list = FarmServicesDelegate.getFarms();
-				
-				 viewSelectedFarm();
-				 JOptionPane.showMessageDialog(alert, "Delete Done !");
-			}
-		});
+		
 		btnDelete.setBounds(267, 512, 89, 23);
 		panel_3.add(btnDelete);
 		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Farm newfarm = new Farm();
-				newfarm.setAdress(AdressFarmField.getText());
-				newfarm.setMail(emailFarmField.getText());
-				newfarm.setTelephone(phoneFarmField.getText());
-				newfarm.setNomFarm(nomFarmField.getText());
-				FarmServicesDelegate.createFarm(newfarm);
-				list = FarmServicesDelegate.getFarms();
-				
-				 viewSelectedFarm();
-				 JOptionPane.showMessageDialog(alert, "Add Done !");
-			}
-		});
+		
 		btnAdd.setBounds(445, 512, 89, 23);
 		panel_3.add(btnAdd);
 		
 		JPanel batimentPanel = new JPanel();
 		tabbedPane.addTab("           Batiments           ", null, batimentPanel, null);
+		batimentPanel.setLayout(null);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBounds(29, 67, 470, 498);
+		panel_6.setBackground(new Color(255, 255, 255));
+		batimentPanel.add(panel_6);
+		panel_6.setLayout(null);
+		
+		tableBatiment = new JTable();
+		tableBatiment.setBackground(new Color(32, 178, 170));
+		tableBatiment.setBounds(10, 11, 450, 476);
+		panel_6.add(tableBatiment);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setBounds(510, 67, 442, 228);
+		panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_7.setBackground(new Color(255, 255, 255));
+		batimentPanel.add(panel_7);
+		
+		tableSheepB = new JTable();
+		tableSheepB.setBackground(new Color(192, 192, 192));
+		GroupLayout gl_panel_7 = new GroupLayout(panel_7);
+		gl_panel_7.setHorizontalGroup(
+			gl_panel_7.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_7.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tableSheepB, GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_panel_7.setVerticalGroup(
+			gl_panel_7.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_7.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tableSheepB, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panel_7.setLayout(gl_panel_7);
+		
+		JPanel panel_8 = new JPanel();
+		panel_8.setBounds(510, 329, 442, 236);
+		panel_8.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_8.setBackground(new Color(255, 255, 255));
+		batimentPanel.add(panel_8);
+		
+		tableEmployeeB = new JTable();
+		tableEmployeeB.setBackground(new Color(192, 192, 192));
+		GroupLayout gl_panel_8 = new GroupLayout(panel_8);
+		gl_panel_8.setHorizontalGroup(
+			gl_panel_8.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_8.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tableEmployeeB, GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_panel_8.setVerticalGroup(
+			gl_panel_8.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_8.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(tableEmployeeB, GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		panel_8.setLayout(gl_panel_8);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBounds(1000, 67, 328, 498);
+		panel_9.setBackground(new Color(255, 255, 255));
+		batimentPanel.add(panel_9);
+		panel_9.setLayout(null);
+		
+		JLabel IdBatiementField = new JLabel("");
+		IdBatiementField.setBackground(new Color(47, 79, 79));
+		IdBatiementField.setBounds(150, 91, 87, 14);
+		panel_9.add(IdBatiementField);
+		
+		JLabel lblDetails = new JLabel("DETAILS");
+		lblDetails.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblDetails.setBounds(120, 11, 87, 32);
+		panel_9.add(lblDetails);
+		
+		JLabel lblIdBatiement = new JLabel("Id Batiement        :");
+		lblIdBatiement.setBounds(10, 91, 94, 14);
+		panel_9.add(lblIdBatiement);
+		
+		JLabel lblCapasity = new JLabel("Capacity               :");
+		lblCapasity.setBounds(10, 146, 94, 14);
+		panel_9.add(lblCapasity);
+		
+		JLabel lblFarm_1 = new JLabel("Farm                     :");
+		lblFarm_1.setBounds(10, 207, 94, 14);
+		panel_9.add(lblFarm_1);
+		
+		JLabel lblEmployeeNumber = new JLabel("Employee Number :");
+		lblEmployeeNumber.setBounds(10, 271, 94, 14);
+		panel_9.add(lblEmployeeNumber);
+		
+		JLabel lblSheepNumber = new JLabel("Sheep Number      :");
+		lblSheepNumber.setBounds(10, 331, 94, 14);
+		panel_9.add(lblSheepNumber);
+		
+		capacityBatimentField = new JTextField();
+		capacityBatimentField.setBounds(150, 143, 86, 20);
+		panel_9.add(capacityBatimentField);
+		capacityBatimentField.setColumns(10);
+		
+		FarmBatimentField = new JTextField();
+		FarmBatimentField.setBounds(150, 204, 86, 20);
+		panel_9.add(FarmBatimentField);
+		FarmBatimentField.setColumns(10);
+		
+		JLabel NumberEmpBatiementField = new JLabel("");
+		NumberEmpBatiementField.setBackground(new Color(47, 79, 79));
+		NumberEmpBatiementField.setBounds(150, 271, 87, 14);
+		panel_9.add(NumberEmpBatiementField);
+		
+		JLabel NumberSheepBatiementField = new JLabel("");
+		NumberSheepBatiementField.setBackground(new Color(47, 79, 79));
+		NumberSheepBatiementField.setBounds(150, 331, 87, 14);
+		panel_9.add(NumberSheepBatiementField);
+		
+		JButton btnUpdate_1 = new JButton("Update");
+		btnUpdate_1.setBounds(10, 448, 89, 23);
+		panel_9.add(btnUpdate_1);
+		
+		JButton btnDelete_1 = new JButton("Delete");
+		btnDelete_1.setBounds(118, 448, 89, 23);
+		panel_9.add(btnDelete_1);
+		
+		JButton btnAdd_1 = new JButton("Add");
+		btnAdd_1.setBounds(229, 448, 89, 23);
+		panel_9.add(btnAdd_1);
 		
 		JPanel employeePanel = new JPanel();
 		tabbedPane.addTab("           Employees           ", null, employeePanel, null);
@@ -532,7 +643,89 @@ public class AdministratorHomeGUI extends JFrame {
 				
 			}
 		});
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(f.getIdFarm());
+				viewSelectedFarm();
+				
+				 FarmServicesDelegate.deleteFarm(f);
+				 JOptionPane.showMessageDialog(alert, "Delete Done !");
+				 refreshTable();
+				
+
+			}
+		});
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Farm newfarm = new Farm();
+				if(verifyEmail(emailFarmField.getText())&&verifyPhone(phoneFarmField.getText())){
+				newfarm.setAdress(AdressFarmField.getText());
+				newfarm.setMail(emailFarmField.getText());
+				newfarm.setTelephone(phoneFarmField.getText());
+				newfarm.setNomFarm(nomFarmField.getText());
+				FarmServicesDelegate.createFarm(newfarm);
+							
+				 JOptionPane.showMessageDialog(alert, "Add Done !");
+				 refreshTable();
+				}else{farmNote.setText("*E-mail or Phone not valide...");}
+			}
+		});
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(verifyEmail(emailFarmField.getText())&&verifyPhone(phoneFarmField.getText())){
+				f.setAdress(AdressFarmField.getText());
+				f.setMail(emailFarmField.getText());
+				f.setTelephone(phoneFarmField.getText());
+				f.setNomFarm(nomFarmField.getText());
+				FarmServicesDelegate.updateFarm(f);				
+				JOptionPane.showMessageDialog(alert, "Update Done !");	 
+				refreshTable();
+				}else{farmNote.setText("*E-mail or Phone not valide...");}
+			}
+		});
 	}
+	
+	/*******/
+	protected boolean verifyPhone(String phone) {
+		if(phone.matches("[0-9]*")){
+			return true ;
+		}else{return false;}
+	}
+
+	protected boolean verifyEmail(String email) {
+			if ((email.contains(" ") == false) && (email.matches(".+@.+\\.[a-z]+")))
+			{return true;
+		}else{	return false;}
+	}
+	protected void refreshTable() {
+		list = FarmServicesDelegate.getFarms();
+		 String[] s = {"Id","Name","Address","E-mail","Phone"};
+			Object[][] o = new String[list.size()][5];
+			//DefaultTableModel m = new DefaultTableModel();
+			
+			
+			for(int i=0;i<list.size();i++){
+				
+				o[i][0]=String.valueOf(list.get(i).getIdFarm());
+				o[i][1]=list.get(i).getNomFarm();
+				o[i][2]=list.get(i).getAdress();
+				o[i][3]=list.get(i).getMail();
+				o[i][4]=list.get(i).getTelephone();
+				System.out.println(i);
+			}
+
+			
+			
+		     table.setModel(new DefaultTableModel(o,s));
+		     table.setBackground(SystemColor.activeCaption);
+		     table.getColumnModel().getColumn(0).setPreferredWidth(5);
+		     table.getColumnModel().getColumn(3).setPreferredWidth(150);
+
+		     DefaultTableModel model = (DefaultTableModel)table.getModel();
+		     model.fireTableDataChanged();
+		
+	}
+
 	protected void viewSelectedFarm() {
 		int id =  Integer.parseInt(table.getValueAt(table.getSelectedRow(),0).toString());
  		
