@@ -1,6 +1,5 @@
 package gui.menu;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,19 +7,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JComboBox;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.AbstractListModel;
 import java.awt.Toolkit;
 
 public class FarmModify extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtAdress;
@@ -119,6 +120,10 @@ public class FarmModify extends JFrame {
 		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			String[] values = new String[] {"Name1", "Name2", "Name3", "Name4", "Name5", "Name6", "Name7"};
 			public int getSize() {
 				return values.length;

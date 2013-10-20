@@ -17,7 +17,6 @@ import java.awt.Toolkit;
 import java.awt.Color;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
@@ -43,11 +42,7 @@ import java.awt.SystemColor;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdministratorHomeGUI extends JFrame {
@@ -418,6 +413,7 @@ public class AdministratorHomeGUI extends JFrame {
 			}
 		});
 		btnApply.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 							
 				retypePassword r = new retypePassword(admin ,loginField.getText(), passwordField.getText(), emailField.getText(), imageUser);
@@ -426,6 +422,7 @@ public class AdministratorHomeGUI extends JFrame {
 			}
 		});
 	}
+	@SuppressWarnings("deprecation")
 	public void testApply(){
 		if(loginField.getText().isEmpty()== false){
 			if(passwordField.getText().isEmpty()== false){

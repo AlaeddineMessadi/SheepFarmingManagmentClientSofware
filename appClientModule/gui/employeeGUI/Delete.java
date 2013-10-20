@@ -1,11 +1,7 @@
 package gui.employeeGUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +18,10 @@ import java.awt.event.ActionEvent;
 
 public class Delete extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 

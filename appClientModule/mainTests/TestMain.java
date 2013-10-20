@@ -1,34 +1,15 @@
 package mainTests;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
-import com.sun.swing.internal.plaf.basic.resources.basic;
 
 import delegate.AdminServiceDelegate;
 import delegate.BatimentServiceDelegate;
-import delegate.EmployeeServiceDelegate;
 import delegate.FarmServicesDelegate;
-import delegate.SheepServicesDelegate;
-import delegate.UserServiceDelegate;
-
-
 import persistance.Admin;
 import persistance.Batiment;
 import persistance.Employee;
 import persistance.Farm;
-import persistance.Sheep;
-import persistance.User;
-import services.adminServices.AdminServicesRemote;
-import services.batimentServices.BatimentServicesRemote;
-import services.employeeServices.EmployeeServicesRemote;
-import services.farmServices.FarmServicesRemote;
-import services.sheepServices.SheepServicesRemote;
 
 
 public class TestMain {
@@ -48,7 +29,7 @@ public class TestMain {
 
 	   Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
        FarmServicesDelegate.createFarm(f);
-/*	  	 Farm f1 = new Farm(); 
+	  	 Farm f1 = new Farm(); 
 	  	 
 	    f1= FarmServicesDelegate.findFarmById(1);
 		System.out.println(f1.toString());
@@ -76,7 +57,7 @@ public class TestMain {
 	
 	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
 	AdminServiceDelegate.createAdmin(a);
-	*/  //////////////
+/*	*/  //////////////
 
 		
 /*		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");

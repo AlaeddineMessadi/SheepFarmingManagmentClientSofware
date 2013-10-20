@@ -1,6 +1,5 @@
 package gui.menu;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.naming.Context;
@@ -10,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
@@ -27,6 +25,10 @@ import java.awt.Toolkit;
 
 public class FarmAdd extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtName;
 	private JTextField txtAdress;

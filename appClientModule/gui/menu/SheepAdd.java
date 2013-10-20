@@ -1,6 +1,5 @@
 package gui.menu;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,20 +11,18 @@ import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JTextField;
-import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.JToggleButton;
-import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 
 public class SheepAdd extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCode;
 
