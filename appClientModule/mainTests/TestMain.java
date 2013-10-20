@@ -33,9 +33,9 @@ public class TestMain {
 
 
 
-	   //Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
-       //FarmServicesDelegate.createFarm(f);
-/*	  	 Farm f1 = new Farm(); 
+	   Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
+       FarmServicesDelegate.createFarm(f);
+	  	 Farm f1 = new Farm(); 
 	  	 
 	    f1= FarmServicesDelegate.findFarmById(1);
 		System.out.println(f1.toString());
@@ -61,7 +61,7 @@ public class TestMain {
 	Batiment b = BatimentServiceDelegate.findBatimentById(1);
 	BatimentServiceDelegate.EmployeeToBatiment(b,emp);
 	
-	*/Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
+	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
 	AdminServiceDelegate.createAdmin(a);
 	  //////////////
 
