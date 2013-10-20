@@ -1,7 +1,13 @@
 package gui;
 
+import gui.menu.BuildingAdd;
+import gui.menu.BuildingDelete;
+import gui.menu.BuildingModify;
 import gui.menu.FarmAdd;
+import gui.menu.FarmDelete;
 import gui.menu.FarmModify;
+import gui.menu.SheepAdd;
+import gui.menu.SheepDelete;
 import gui.messages.retypePassword;
 
 import java.awt.EventQueue;
@@ -132,30 +138,66 @@ public class AdministratorHomeGUI extends JFrame {
 		mnFarm.add(mntmModifyFarm);
 		
 		JMenuItem mntmDeleteFarm = new JMenuItem("Delete Farm");
+		mntmDeleteFarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FarmDelete m=new FarmDelete();
+				m.setVisible(true);
+			}
+		});
 		mnFarm.add(mntmDeleteFarm);
 		
 		JMenu mnBatiment = new JMenu("Batiment");
 		menuBar.add(mnBatiment);
 		
 		JMenuItem mntmAddBatiment = new JMenuItem("Add Batiment");
+		mntmAddBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuildingAdd a=new BuildingAdd();
+				a.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmAddBatiment);
 		
 		JMenuItem mntmModifyBatiment = new JMenuItem("Modify Batiment");
+		mntmModifyBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuildingModify a=new BuildingModify();
+				a.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmModifyBatiment);
 		
 		JMenuItem mntmDeleteBatiment = new JMenuItem("Delete Batiment");
+		mntmDeleteBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuildingDelete a=new BuildingDelete();
+				a.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmDeleteBatiment);
 		
 		JMenu mnSheeps = new JMenu("Sheeps");
 		menuBar.add(mnSheeps);
 		
 		JMenuItem mntmAddSheep = new JMenuItem("Add Sheep");
+		mntmAddSheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SheepAdd a=new SheepAdd();
+				a.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmAddSheep);
 		
 		JMenuItem mntmModifySheep = new JMenuItem("Modify Sheep");
 		mnSheeps.add(mntmModifySheep);
 		
 		JMenuItem mntmDeleteSheep = new JMenuItem("Delete Sheep");
+		mntmDeleteSheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SheepDelete a=new SheepDelete();
+				a.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmDeleteSheep);
 		
 		JMenu mnEmployees = new JMenu("Employees");

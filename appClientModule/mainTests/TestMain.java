@@ -61,9 +61,9 @@ public class TestMain {
 	Batiment b = BatimentServiceDelegate.findBatimentById(1);
 	BatimentServiceDelegate.EmployeeToBatiment(b,emp);
 	
-	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
+	*/Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
 	AdminServiceDelegate.createAdmin(a);
-	*/  //////////////
+	  //////////////
 
 		
 /*		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");
