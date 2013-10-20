@@ -16,6 +16,7 @@ import delegate.EmployeeServiceDelegate;
 import delegate.FarmServicesDelegate;
 import delegate.SheepServicesDelegate;
 import delegate.UserServiceDelegate;
+import delegate.VaccineServicesDelegate;
 
 
 import persistance.Admin;
@@ -24,6 +25,7 @@ import persistance.Employee;
 import persistance.Farm;
 import persistance.Sheep;
 import persistance.User;
+import persistance.Vaccine;
 import services.adminServices.AdminServicesRemote;
 import services.batimentServices.BatimentServicesRemote;
 import services.employeeServices.EmployeeServicesRemote;
@@ -44,10 +46,12 @@ public class TestMain {
 	public static void main(String[] args) throws Exception {
 
 
-		
+		   Vaccine vaccin = new Vaccine("jj", new Date());
 
-	   Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
-       FarmServicesDelegate.createFarm(f);
+	       VaccineServicesDelegate.createVaccine(vaccin);
+
+	   //Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
+       //FarmServicesDelegate.createFarm(f);
 /*	  	 Farm f1 = new Farm(); 
 	  	 
 	    f1= FarmServicesDelegate.findFarmById(1);
