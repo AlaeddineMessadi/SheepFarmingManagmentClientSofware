@@ -15,6 +15,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BuildingAdd extends JFrame {
 
@@ -47,7 +49,7 @@ public class BuildingAdd extends JFrame {
 	 */
 	public BuildingAdd() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(BuildingAdd.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 621, 423);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,6 +104,11 @@ public class BuildingAdd extends JFrame {
 		contentPane.add(btnAdd);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCancel.setBounds(482, 338, 89, 23);
 		contentPane.add(btnCancel);
