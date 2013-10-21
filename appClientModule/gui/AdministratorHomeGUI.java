@@ -203,9 +203,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnFarm.add(mntmModifyFarm);
 		
 		JMenuItem mntmDeleteFarm = new JMenuItem("Delete Farm");
-		mntmDeleteFarm.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmDeleteFarm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				FarmDelete f =  new FarmDelete() ;
 				f.setVisible(true);
 			}
@@ -216,9 +215,8 @@ public class AdministratorHomeGUI extends JFrame {
 		menuBar.add(mnBatiment);
 		
 		JMenuItem mntmAddBatiment = new JMenuItem("Add Batiment");
-		mntmAddBatiment.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmAddBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			   BuildingAdd a = new BuildingAdd();
 			   a.setVisible(true);
 			}
@@ -226,9 +224,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnBatiment.add(mntmAddBatiment);
 		
 		JMenuItem mntmModifyBatiment = new JMenuItem("Modify Batiment");
-		mntmModifyBatiment.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmModifyBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 			  BuildingModify a = new BuildingModify() ;
 			  a.setVisible(true);
 			}
@@ -236,9 +233,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnBatiment.add(mntmModifyBatiment);
 		
 		JMenuItem mntmDeleteBatiment = new JMenuItem("Delete Batiment");
-		mntmDeleteBatiment.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmDeleteBatiment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				BuildingDelete a = new BuildingDelete();
 				a.setVisible(true);
 			}
@@ -249,9 +245,8 @@ public class AdministratorHomeGUI extends JFrame {
 		menuBar.add(mnSheeps);
 		
 		JMenuItem mntmAddSheep = new JMenuItem("Add Sheep");
-		mntmAddSheep.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmAddSheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				SheepAdd a = new SheepAdd();
 				a.setVisible(true);
 			}
@@ -259,9 +254,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnSheeps.add(mntmAddSheep);
 		
 		JMenuItem mntmModifySheep = new JMenuItem("Modify Sheep");
-		mntmModifySheep.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmModifySheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				SheepModify a = new SheepModify();
 				a.setVisible(true);
 			}
@@ -269,9 +263,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnSheeps.add(mntmModifySheep);
 		
 		JMenuItem mntmDeleteSheep = new JMenuItem("Delete Sheep");
-		mntmDeleteSheep.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmDeleteSheep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				SheepDelete a = new SheepDelete() ;
 				a.setVisible(true);
 			}
@@ -282,9 +275,8 @@ public class AdministratorHomeGUI extends JFrame {
 		menuBar.add(mnEmployees);
 		
 		JMenuItem mntmAddEmployee = new JMenuItem("Add Employee");
-		mntmAddEmployee.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmAddEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				FarmerAdd a = new FarmerAdd();
 				a.setVisible(true);
 			}
@@ -292,9 +284,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnEmployees.add(mntmAddEmployee);
 		
 		JMenuItem mntmModifyEmployee = new JMenuItem("Modify Employee");
-		mntmModifyEmployee.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmModifyEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				FarmerModify a = new FarmerModify();
 				a.setVisible(true);
 			}
@@ -302,9 +293,8 @@ public class AdministratorHomeGUI extends JFrame {
 		mnEmployees.add(mntmModifyEmployee);
 		
 		JMenuItem mntmDeleteEmployee = new JMenuItem("Delete Employee");
-		mntmDeleteEmployee.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmDeleteEmployee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				FarmerDelete a = new FarmerDelete();
 				a.setVisible(true);
 			}
