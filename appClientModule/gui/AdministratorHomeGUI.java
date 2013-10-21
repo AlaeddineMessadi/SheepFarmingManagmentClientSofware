@@ -50,7 +50,11 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.border.LineBorder;
 
@@ -117,6 +121,19 @@ public class AdministratorHomeGUI extends JFrame {
 	private JScrollPane scrollPaneEmployeeA;
 	private int idemp;
 	private JTable tableSheeps;
+	private JTextField idsheeps;
+	private JTextField codesheep;
+	private JTextField race;
+	private JTextField sex;
+	private JTextField batimentSheep;
+	private JTextField datebirth;
+	private JTextField dateinput;
+	private JTextField dateoutput;
+	private JTextField priceinput;
+	private JTextField priceoutput;
+	private List<Sheep> listSheeps;
+	private int idsheep;
+	private Sheep sheepp = new Sheep();;
 
 	/**
 	 * Launch the application.
@@ -807,6 +824,7 @@ public class AdministratorHomeGUI extends JFrame {
 					 		emp.setPoste(posteemployeef.getText());
 					 		emp.setPhone(phoneemployeef.getText());
 					 		EmployeeServiceDelegate.updateEmployee(emp);
+					 		JOptionPane.showMessageDialog(alert, "Update Done !");
 					 		refreshTableEmployeef();
 			}
 		});
@@ -818,6 +836,7 @@ public class AdministratorHomeGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Employee ee = EmployeeServiceDelegate.findEmployeeById(idemp);
 				EmployeeServiceDelegate.deleteEmployee(ee);
+				JOptionPane.showMessageDialog(alert, "Delete Done !");
 				refreshTableEmployeef();
 			}
 		});
@@ -851,8 +870,8 @@ public class AdministratorHomeGUI extends JFrame {
 				 }
 				 String s = (String)JOptionPane.showInputDialog(
 				                     alert,
-				                     "Complete the sentence:\n"
-				                     + "\"Green eggs and...\"",
+				                     "Choose:\n"
+				                     + "\"Batiment...\"",
 				                     "Customized Dialog",
 				                     JOptionPane.PLAIN_MESSAGE,
 				                     null,
@@ -906,7 +925,7 @@ public class AdministratorHomeGUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				viewSelectedEmployeeE();
-				System.out.println("ccccccccclikkkksqdf");
+
 			}
 		});
 		JPanel sheepPanel = new JPanel();
@@ -924,7 +943,14 @@ public class AdministratorHomeGUI extends JFrame {
 		panel_12.add(scrollPaneSheeps);
 		
 		tableSheeps = new JTable();
+		tableSheeps.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				viewSelectedSheeps();
+			}
+		});
 		scrollPaneSheeps.setViewportView(tableSheeps);
+		refreshTableSheeps();
 		
 		JPanel panel_13 = new JPanel();
 		panel_13.setBackground(Color.WHITE);
@@ -940,6 +966,195 @@ public class AdministratorHomeGUI extends JFrame {
 		JLabel lblIdSheep = new JLabel("Id Sheep");
 		lblIdSheep.setBounds(72, 121, 70, 14);
 		panel_13.add(lblIdSheep);
+		
+		JLabel lblCodeSheep = new JLabel("Code Sheep");
+		lblCodeSheep.setBounds(72, 181, 70, 14);
+		panel_13.add(lblCodeSheep);
+		
+		JLabel lblRace = new JLabel("Race");
+		lblRace.setBounds(72, 246, 70, 14);
+		panel_13.add(lblRace);
+		
+		JLabel lblSex = new JLabel("sex");
+		lblSex.setBounds(72, 303, 70, 14);
+		panel_13.add(lblSex);
+		
+		JLabel lblBatiment_1 = new JLabel("batiment");
+		lblBatiment_1.setBounds(72, 366, 70, 14);
+		panel_13.add(lblBatiment_1);
+		
+		JLabel lblDateBirth = new JLabel("Date Birth");
+		lblDateBirth.setBounds(297, 121, 70, 14);
+		panel_13.add(lblDateBirth);
+		
+		JLabel lblDateInput = new JLabel("Date input");
+		lblDateInput.setBounds(297, 181, 70, 14);
+		panel_13.add(lblDateInput);
+		
+		JLabel lblDateOutput = new JLabel("Date output");
+		lblDateOutput.setBounds(297, 246, 70, 14);
+		panel_13.add(lblDateOutput);
+		
+		JLabel lblPriceInput = new JLabel("Price input");
+		lblPriceInput.setBounds(297, 303, 70, 14);
+		panel_13.add(lblPriceInput);
+		
+		JLabel lblPriceOutput = new JLabel("Price output");
+		lblPriceOutput.setBounds(297, 366, 70, 14);
+		panel_13.add(lblPriceOutput);
+		
+		idsheeps = new JTextField();
+		idsheeps.setBounds(163, 118, 86, 20);
+		panel_13.add(idsheeps);
+		idsheeps.setColumns(10);
+		
+		codesheep = new JTextField();
+		codesheep.setColumns(10);
+		codesheep.setBounds(163, 178, 86, 20);
+		panel_13.add(codesheep);
+		
+		race = new JTextField();
+		race.setColumns(10);
+		race.setBounds(163, 243, 86, 20);
+		panel_13.add(race);
+		
+		sex = new JTextField();
+		sex.setColumns(10);
+		sex.setBounds(163, 300, 86, 20);
+		panel_13.add(sex);
+		
+		batimentSheep = new JTextField();
+		batimentSheep.setColumns(10);
+		batimentSheep.setBounds(163, 363, 86, 20);
+		panel_13.add(batimentSheep);
+		
+		datebirth = new JTextField();
+		datebirth.setColumns(10);
+		datebirth.setBounds(393, 118, 86, 20);
+		panel_13.add(datebirth);
+		
+		dateinput = new JTextField();
+		dateinput.setColumns(10);
+		dateinput.setBounds(393, 178, 86, 20);
+		panel_13.add(dateinput);
+		
+		dateoutput = new JTextField();
+		dateoutput.setColumns(10);
+		dateoutput.setBounds(393, 243, 86, 20);
+		panel_13.add(dateoutput);
+		
+		priceinput = new JTextField();
+		priceinput.setColumns(10);
+		priceinput.setBounds(393, 300, 86, 20);
+		panel_13.add(priceinput);
+		
+		priceoutput = new JTextField();
+		priceoutput.setColumns(10);
+		priceoutput.setBounds(393, 363, 86, 20);
+		panel_13.add(priceoutput);
+		
+		JButton btnUpdate_3 = new JButton("Update");
+		btnUpdate_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sheep sheep = SheepServicesDelegate.findSheepById(idsheep);
+				sheep.setCode_sheep(Integer.parseInt(codesheep.getText()));
+				sheep.setRace_sheep(race.getText());
+				sheep.setSexe_sheep(sex.getText());
+				sheep.setPrice_input(Float.parseFloat(priceinput.getText()));
+				sheep.setPrice_output(Float.parseFloat(priceoutput.getText()));
+				DateFormat birth = new SimpleDateFormat("yyy/MM/dd");
+				try {
+					sheep.setDate_birth(birth.parse(datebirth.getText()));
+					sheep.setDate_date_input(birth.parse(dateinput.getText()));
+					sheep.setDate_output(birth.parse(dateoutput.getText()));
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				SheepServicesDelegate.updateSheep(sheep);
+				JOptionPane.showMessageDialog(alert,"Update done");
+				refreshTableSheeps();
+				
+			}
+		});
+		btnUpdate_3.setBounds(53, 447, 89, 23);
+		panel_13.add(btnUpdate_3);
+		
+		JButton btnDelete_3 = new JButton("Delete");
+		btnDelete_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sheep sheep = SheepServicesDelegate.findSheepById(idsheep);
+				SheepServicesDelegate.deleteSheep(sheep);
+				JOptionPane.showMessageDialog(alert, "Delete Done !");
+				refreshTableSheeps();
+			}
+		});
+		btnDelete_3.setBounds(215, 447, 89, 23);
+		panel_13.add(btnDelete_3);
+		
+		JButton btnAdd_3 = new JButton("Add");
+		btnAdd_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sheep sheep = new Sheep();
+
+				
+				sheep.setCode_sheep(Integer.parseInt(codesheep.getText()));
+				sheep.setRace_sheep(race.getText());
+				sheep.setSexe_sheep(sex.getText());
+				sheep.setPrice_input(Float.parseFloat(priceinput.getText()));
+				sheep.setPrice_output(Float.parseFloat(priceoutput.getText()));
+				DateFormat birth = new SimpleDateFormat("yyy/MM/dd");
+				try {
+					sheep.setDate_birth(birth.parse(datebirth.getText()));
+					sheep.setDate_date_input(birth.parse(dateinput.getText()));
+					sheep.setDate_output(birth.parse(dateoutput.getText()));
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 
+				 
+				 int i = 0 ;
+				 List<Batiment> f = BatimentServiceDelegate.getBatiment();
+				 Object[] possibilities = new String[f.size()] ;
+				 for (Batiment ff : f){
+				 possibilities[i] = ff.getName_batiment();
+				 i++;
+				 }
+				 String s = (String)JOptionPane.showInputDialog(
+				                     alert,
+				                     "Choose:\n"
+				                     + "\"Batiment...\"",
+				                     "Customized Dialog",
+				                     JOptionPane.PLAIN_MESSAGE,
+				                     null,
+				                     possibilities,
+				                     "ham");
+
+				 //If a string was returned, say so.
+				 if ((s == null) && (s.length() < 0)) {
+					 JOptionPane.showMessageDialog(alert, "Not found!");
+				     return;
+				 }
+				 else{Batiment h = new Batiment();
+					 for (Batiment fff : f){
+						 if(s == fff.getName_batiment()){
+							  h = fff ;
+						 }
+						 
+						 }
+					 
+				// b.setFarm(h);
+					 List<Sheep> bb = new ArrayList<Sheep>();
+					 bb.add(sheep);
+				     BatimentServiceDelegate.SheepToBatiment(h, bb);
+				     JOptionPane.showMessageDialog(alert, "Add Done !");
+				     refreshTableSheeps();
+				 }
+			}
+		});
+		btnAdd_3.setBounds(382, 447, 89, 23);
+		panel_13.add(btnAdd_3);
 		
 		
 		byte[] img = admin.getPhoto();
@@ -1158,6 +1373,55 @@ public class AdministratorHomeGUI extends JFrame {
  		phoneemployeef.setText(emp.getPhone());
  		batimentemployeef.setText(emp.getBatiment().getName_batiment());
  		refreshTableEmployeef();
+	}
+	
+	
+	protected void refreshTableSheeps(){
+		listSheeps = SheepServicesDelegate.getSheeps();
+	    String[] s1 = {"Id","Code Sheep","Sex","Race","Price input","Price output","Date input","Date output","Batiment"};
+		Object[][] o1 = new String[listSheeps.size()][9];
+		for(int i=0;i<listSheeps.size();i++){	
+			
+			o1[i][0]=String.valueOf(listSheeps.get(i).getId());
+			o1[i][1]=String.valueOf(listSheeps.get(i).getCode_sheep());
+			o1[i][2]=String.valueOf(listSheeps.get(i).getSexe_sheep());
+			o1[i][3]=String.valueOf(listSheeps.get(i).getRace_sheep());
+			o1[i][4]=String.valueOf(listSheeps.get(i).getPrice_input());
+			o1[i][5]=String.valueOf(listSheeps.get(i).getPrice_output());
+			o1[i][6]=String.valueOf(listSheeps.get(i).getDate_date_input());
+			o1[i][7]=String.valueOf(listSheeps.get(i).getDate_output());
+			o1[i][8]=String.valueOf(listSheeps.get(i).getBatiment().getName_batiment());
+		}
+		tableSheeps.setModel(new DefaultTableModel(o1,s1));
+		tableSheeps.setBackground(SystemColor.activeCaption);
+		DefaultTableModel model1 = (DefaultTableModel)tableSheeps.getModel();
+	     model1.fireTableDataChanged();
+	     System.out.println("Sheep refresh table");
+	}
+	
+protected void viewSelectedSheeps() {
+		
+		idsheep = Integer.parseInt(tableSheeps.getValueAt(tableSheeps.getSelectedRow(),0).toString());
+		System.out.println(idsheep);
+		listSheeps = SheepServicesDelegate.getSheeps();
+ 		for(Sheep m : listSheeps){
+ 			if(m.getId()==idsheep){
+ 				sheepp = m;
+ 			}
+ 		}
+ 		
+ 		idsheeps.setText(String.valueOf(sheepp.getId()));
+ 		codesheep.setText(String.valueOf(sheepp.getCode_sheep()));
+ 		race.setText(sheepp.getRace_sheep());
+ 		sex.setText(sheepp.getSexe_sheep());
+ 		dateinput.setText(String.valueOf(sheepp.getDate_date_input()));
+ 		dateoutput.setText(String.valueOf(sheepp.getDate_output()));
+ 		priceinput.setText(String.valueOf(sheepp.getPrice_input()));
+ 		priceoutput.setText(String.valueOf(sheepp.getPrice_output()));
+ 		datebirth.setText(String.valueOf(sheepp.getDate_birth()));
+ 	//	remarquesheep.setText(sheepp.getRemarque());
+ 		batimentSheep.setText(sheepp.getBatiment().getName_batiment());
+ 		refreshTableSheeps();
 	}
 	
 	protected void viewSelectedFarm() {
