@@ -101,6 +101,21 @@ public class AdministratorHomeGUI extends JFrame {
 	private JLabel numberSheepBatiementField;
 	private int idbatiments;
 	private JTextField NameBatimentField;
+	private JTable tableEmployeeE;
+	private JTextField idemployeef;
+	private JTextField firstnameemployeef;
+	private JTextField lastNameEmployeef;
+	private JTextField loginemployeef;
+	private JTextField pwdemployeef;
+	private JTextField addressemployeef;
+	private JTextField emailemployeef;
+	private JTextField cinemployeef;
+	private JTextField posteemployeef;
+	private JTextField batimentemployeef;
+	private Employee emp;
+	private JTextField phoneemployeef;
+	private JScrollPane scrollPaneEmployeeA;
+	private int idemp;
 
 	/**
 	 * Launch the application.
@@ -664,7 +679,235 @@ public class AdministratorHomeGUI extends JFrame {
 		
 		JPanel employeePanel = new JPanel();
 		tabbedPane.addTab("           Employees           ", null, employeePanel, null);
+		employeePanel.setLayout(null);
 		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBackground(new Color(255, 255, 255));
+		panel_10.setBounds(744, 67, 549, 534);
+		employeePanel.add(panel_10);
+		panel_10.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Id Employee");
+		lblNewLabel.setBounds(48, 118, 66, 21);
+		panel_10.add(lblNewLabel);
+		
+		JLabel lblFirstname = new JLabel("FirstName");
+		lblFirstname.setBounds(48, 171, 66, 21);
+		panel_10.add(lblFirstname);
+		
+		JLabel lblLastname = new JLabel("LastName");
+		lblLastname.setBounds(48, 226, 66, 21);
+		panel_10.add(lblLastname);
+		
+		JLabel lblLogin_1 = new JLabel("Login");
+		lblLogin_1.setBounds(48, 277, 66, 21);
+		panel_10.add(lblLogin_1);
+		
+		JLabel lblPassword_1 = new JLabel("Password");
+		lblPassword_1.setBounds(48, 332, 66, 21);
+		panel_10.add(lblPassword_1);
+		
+		JLabel lblAddress = new JLabel("Address");
+		lblAddress.setBounds(320, 121, 54, 21);
+		panel_10.add(lblAddress);
+		
+		JLabel lblEmail_1 = new JLabel("Email");
+		lblEmail_1.setBounds(320, 165, 54, 21);
+		panel_10.add(lblEmail_1);
+		
+		JLabel lblCin = new JLabel("Cin");
+		lblCin.setBounds(320, 212, 54, 21);
+		panel_10.add(lblCin);
+		
+		JLabel lblPoste = new JLabel("Poste");
+		lblPoste.setBounds(320, 257, 54, 21);
+		panel_10.add(lblPoste);
+		
+		JLabel lblBatiment = new JLabel("Batiment");
+		lblBatiment.setBounds(320, 304, 54, 21);
+		panel_10.add(lblBatiment);
+		
+		idemployeef = new JTextField();
+		idemployeef.setBounds(160, 118, 86, 20);
+		panel_10.add(idemployeef);
+		idemployeef.setColumns(10);
+		
+		firstnameemployeef = new JTextField();
+		firstnameemployeef.setBounds(160, 171, 86, 20);
+		panel_10.add(firstnameemployeef);
+		firstnameemployeef.setColumns(10);
+		
+		lastNameEmployeef = new JTextField();
+		lastNameEmployeef.setBounds(160, 226, 86, 20);
+		panel_10.add(lastNameEmployeef);
+		lastNameEmployeef.setColumns(10);
+		
+		loginemployeef = new JTextField();
+		loginemployeef.setColumns(10);
+		loginemployeef.setBounds(160, 277, 86, 20);
+		panel_10.add(loginemployeef);
+		
+		pwdemployeef = new JTextField();
+		pwdemployeef.setColumns(10);
+		pwdemployeef.setBounds(160, 332, 86, 20);
+		panel_10.add(pwdemployeef);
+		
+		addressemployeef = new JTextField();
+		addressemployeef.setColumns(10);
+		addressemployeef.setBounds(412, 118, 86, 20);
+		panel_10.add(addressemployeef);
+		
+		emailemployeef = new JTextField();
+		emailemployeef.setColumns(10);
+		emailemployeef.setBounds(412, 165, 86, 20);
+		panel_10.add(emailemployeef);
+		
+		cinemployeef = new JTextField();
+		cinemployeef.setColumns(10);
+		cinemployeef.setBounds(412, 212, 86, 20);
+		panel_10.add(cinemployeef);
+		
+		posteemployeef = new JTextField();
+		posteemployeef.setColumns(10);
+		posteemployeef.setBounds(412, 257, 86, 20);
+		panel_10.add(posteemployeef);
+		
+		batimentemployeef = new JTextField();
+		batimentemployeef.setColumns(10);
+		batimentemployeef.setBounds(412, 301, 86, 20);
+		panel_10.add(batimentemployeef);
+		
+		JLabel lblPhone = new JLabel("Phone");
+		lblPhone.setBounds(48, 390, 46, 14);
+		panel_10.add(lblPhone);
+		
+		phoneemployeef = new JTextField();
+		phoneemployeef.setBounds(160, 387, 86, 20);
+		panel_10.add(phoneemployeef);
+		phoneemployeef.setColumns(10);
+		
+		JLabel lblEmployeeDetails = new JLabel("EMPLOYEE DETAILS");
+		lblEmployeeDetails.setFont(new Font("Sylfaen", Font.BOLD, 16));
+		lblEmployeeDetails.setBounds(188, 36, 173, 34);
+		panel_10.add(lblEmployeeDetails);
+		
+		JButton btnUpdate_2 = new JButton("Update");
+		btnUpdate_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						 Employee emp = EmployeeServiceDelegate.findEmployeeById(idemp);
+						    emp.setIdUser(Integer.parseInt(idemployeef.getText()));
+					 		emp.setFirstName(firstnameemployeef.getText());
+					 		emp.setLastName(lastNameEmployeef.getText());
+					 		emp.setLogin(loginemployeef.getText());
+					 		emp.setPwd(pwdemployeef.getText());
+					 		emp.setAdress(addressemployeef.getText());
+					 		emp.setEmail(emailemployeef.getText());
+					 		emp.setCin(cinemployeef.getText());
+					 		emp.setPoste(posteemployeef.getText());
+					 		emp.setPhone(phoneemployeef.getText());
+					 		EmployeeServiceDelegate.updateEmployee(emp);
+					 		refreshTableEmployeef();
+			}
+		});
+		btnUpdate_2.setBounds(70, 466, 89, 23);
+		panel_10.add(btnUpdate_2);
+		
+		JButton btnDelete_2 = new JButton("Delete");
+		btnDelete_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Employee ee = EmployeeServiceDelegate.findEmployeeById(idemp);
+				EmployeeServiceDelegate.deleteEmployee(ee);
+				refreshTableEmployeef();
+			}
+		});
+		btnDelete_2.setBounds(229, 466, 89, 23);
+		panel_10.add(btnDelete_2);
+		
+		JButton btnAdd_2 = new JButton("Add");
+		btnAdd_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Employee b = new Employee();
+
+				
+				 b.setFirstName(firstnameemployeef.getText());
+				 b.setLastName(lastNameEmployeef.getText());
+				 b.setLogin(loginemployeef.getText());
+				 b.setPwd(pwdemployeef.getText());
+				 b.setPhone(phoneemployeef.getText());
+				 b.setAdress(addressemployeef.getText());
+				 b.setEmail(emailemployeef.getText());
+				 b.setPoste(posteemployeef.getText());
+				 b.setCin(cinemployeef.getText());
+				 
+				 
+				 int i = 0 ;
+				 List<Batiment> f = BatimentServiceDelegate.getBatiment();
+				 Object[] possibilities = new String[f.size()] ;
+				 for (Batiment ff : f){
+				 possibilities[i] = ff.getName_batiment();
+				 i++;
+				 }
+				 String s = (String)JOptionPane.showInputDialog(
+				                     alert,
+				                     "Complete the sentence:\n"
+				                     + "\"Green eggs and...\"",
+				                     "Customized Dialog",
+				                     JOptionPane.PLAIN_MESSAGE,
+				                     null,
+				                     possibilities,
+				                     "ham");
+
+				 //If a string was returned, say so.
+				 if ((s == null) && (s.length() < 0)) {
+					 JOptionPane.showMessageDialog(alert, "Not found!");
+				     return;
+				 }
+				 else{Batiment h = new Batiment();
+					 for (Batiment fff : f){
+						 if(s == fff.getName_batiment()){
+							  h = fff ;
+						 }
+						 
+						 }
+					 
+				// b.setFarm(h);
+					 List<Employee> bb = new ArrayList<Employee>();
+					 bb.add(b);
+				     BatimentServiceDelegate.EmployeeToBatiment(h, bb);
+				     JOptionPane.showMessageDialog(alert, "Add Done !");
+				 refreshTableBatiements();
+				 }
+			}
+		});
+		btnAdd_2.setBounds(388, 466, 89, 23);
+		panel_10.add(btnAdd_2);
+		
+		JPanel panel_11 = new JPanel();
+		panel_11.setBackground(Color.WHITE);
+		panel_11.setBounds(62, 67, 620, 534);
+		employeePanel.add(panel_11);
+		panel_11.setLayout(null);
+		
+		scrollPaneEmployeeA = new JScrollPane();
+		
+		tableEmployeeE = new JTable();
+		tableEmployeeE.setColumnSelectionAllowed(true);
+		tableEmployeeE.setBackground(new Color(192, 192, 192));
+		tableEmployeeE.setCellSelectionEnabled(false);
+		tableEmployeeE.setBounds(59, 47, 459, 309);
+		refreshTableEmployeef();
+		scrollPaneEmployeeA.setViewportView(tableEmployeeE);
+		scrollPaneEmployeeA.setBounds(61, 34, 501, 466);
+		panel_11.add(scrollPaneEmployeeA);
+		refreshTableEmployeef();
+		tableEmployeeE.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				viewSelectedEmployeeE();
+				System.out.println("ccccccccclikkkksqdf");
+			}
+		});
 		JPanel sheepPanel = new JPanel();
 		tabbedPane.addTab("           Sheeps           ", null, sheepPanel, null);
 		
@@ -837,9 +1080,55 @@ public class AdministratorHomeGUI extends JFrame {
 	     System.out.println("sheep table");
 	}
 	
+/*********************refresh employee profil table ************/
 	
-    
-
+	protected void refreshTableEmployeef(){
+		listEmployeeB = EmployeeServiceDelegate.getEmployee();
+	    String[] s1 = {"Id","FirstName","LasteName","Login","Password","Email","Adress","Poste","Batiment"};
+		Object[][] o1 = new String[listEmployeeB.size()][9];
+		for(int i=0;i<listEmployeeB.size();i++){	
+			
+			o1[i][0]=String.valueOf(listEmployeeB.get(i).getIdUser());
+			o1[i][1]=String.valueOf(listEmployeeB.get(i).getFirstName());
+			o1[i][2]=String.valueOf(listEmployeeB.get(i).getLastName());
+			o1[i][3]=String.valueOf(listEmployeeB.get(i).getLogin());
+			o1[i][4]=String.valueOf(listEmployeeB.get(i).getPwd());
+			o1[i][5]=String.valueOf(listEmployeeB.get(i).getEmail());
+			o1[i][6]=String.valueOf(listEmployeeB.get(i).getAdress());
+			o1[i][7]=String.valueOf(listEmployeeB.get(i).getPoste());
+			o1[i][8]=String.valueOf(listEmployeeB.get(i).getBatiment().getName_batiment());
+		}
+		tableEmployeeE.setModel(new DefaultTableModel(o1,s1));
+		tableEmployeeE.setBackground(SystemColor.activeCaption);
+		DefaultTableModel model1 = (DefaultTableModel)tableEmployeeE.getModel();
+	     model1.fireTableDataChanged();
+	     System.out.println("Employeeees table");
+	}
+	
+	protected void viewSelectedEmployeeE() {
+		
+		idemp = Integer.parseInt(tableEmployeeE.getValueAt(tableEmployeeE.getSelectedRow(),0).toString());
+		System.out.println(idemp);
+		listEmployeeB = EmployeeServiceDelegate.getEmployee();
+ 		for(Employee m : listEmployeeB){
+ 			if(m.getIdUser()==idemp){
+ 				emp = m;
+ 			}
+ 		}
+ 		
+ 		idemployeef.setText(String.valueOf(emp.getIdUser()));
+ 		firstnameemployeef.setText(emp.getFirstName());
+ 		lastNameEmployeef.setText(emp.getLastName());
+ 		loginemployeef.setText(emp.getLogin());
+ 		pwdemployeef.setText(emp.getPwd());
+ 		addressemployeef.setText(emp.getAdress());
+ 		emailemployeef.setText(emp.getEmail());
+ 		cinemployeef.setText(emp.getCin());
+ 		posteemployeef.setText(emp.getPoste());
+ 		phoneemployeef.setText(emp.getPhone());
+ 		batimentemployeef.setText(emp.getBatiment().getName_batiment());
+ 		refreshTableEmployeef();
+	}
 	
 	protected void viewSelectedFarm() {
 		int id =  Integer.parseInt(tableFarm.getValueAt(tableFarm.getSelectedRow(),0).toString());

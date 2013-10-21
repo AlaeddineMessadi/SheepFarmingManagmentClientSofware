@@ -88,10 +88,7 @@ public class TestMain {
 			System.out.println(ss.getCode_sheep());
 		}
 	
-		List<Batiment> r = BatimentServiceDelegate.getBatiment();
-		for(Batiment ss:r){
-			System.out.println(ss.getEmployee().size());
-		}
+		
 	
 	}
 
