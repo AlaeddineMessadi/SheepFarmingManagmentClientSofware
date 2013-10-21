@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import persistance.Employee;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class EmployeeHomeGUI extends JFrame {
 
@@ -43,6 +44,11 @@ public class EmployeeHomeGUI extends JFrame {
 		JLabel label = new JLabel("");
 		label.setBounds(122, 65, 163, 39);
 		contentPane.add(label);
+		
+		JLabel lblHereTheTache = new JLabel("Here the Tache of Amani Mannai ");
+		lblHereTheTache.setFont(new Font("SketchFlow Print", Font.BOLD, 30));
+		lblHereTheTache.setBounds(10, 65, 670, 242);
+		contentPane.add(lblHereTheTache);
 	}
 
 }
