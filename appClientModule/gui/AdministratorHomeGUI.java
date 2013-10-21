@@ -116,6 +116,7 @@ public class AdministratorHomeGUI extends JFrame {
 	private JTextField phoneemployeef;
 	private JScrollPane scrollPaneEmployeeA;
 	private int idemp;
+	private JTable tableSheeps;
 
 	/**
 	 * Launch the application.
@@ -630,7 +631,7 @@ public class AdministratorHomeGUI extends JFrame {
 				 
 				 int i = 0 ;
 				 List<Farm> f = FarmServicesDelegate.getFarms();
-				 Object[] possibilities = {""} ;
+				 Object[] possibilities = new String[f.size()] ;
 				 for (Farm ff : f){
 				 possibilities[i] = ff.getNomFarm();
 				 i++;
@@ -876,7 +877,7 @@ public class AdministratorHomeGUI extends JFrame {
 					 bb.add(b);
 				     BatimentServiceDelegate.EmployeeToBatiment(h, bb);
 				     JOptionPane.showMessageDialog(alert, "Add Done !");
-				 refreshTableBatiements();
+				     refreshTableEmployeef();
 				 }
 			}
 		});
@@ -910,6 +911,35 @@ public class AdministratorHomeGUI extends JFrame {
 		});
 		JPanel sheepPanel = new JPanel();
 		tabbedPane.addTab("           Sheeps           ", null, sheepPanel, null);
+		sheepPanel.setLayout(null);
+		
+		JPanel panel_12 = new JPanel();
+		panel_12.setBackground(Color.WHITE);
+		panel_12.setBounds(41, 60, 717, 505);
+		sheepPanel.add(panel_12);
+		panel_12.setLayout(null);
+		
+		JScrollPane scrollPaneSheeps = new JScrollPane();
+		scrollPaneSheeps.setBounds(10, 33, 697, 438);
+		panel_12.add(scrollPaneSheeps);
+		
+		tableSheeps = new JTable();
+		scrollPaneSheeps.setViewportView(tableSheeps);
+		
+		JPanel panel_13 = new JPanel();
+		panel_13.setBackground(Color.WHITE);
+		panel_13.setBounds(813, 60, 520, 505);
+		sheepPanel.add(panel_13);
+		panel_13.setLayout(null);
+		
+		JLabel lblSheepDetails = new JLabel("SHEEP DETAILS");
+		lblSheepDetails.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblSheepDetails.setBounds(239, 37, 129, 38);
+		panel_13.add(lblSheepDetails);
+		
+		JLabel lblIdSheep = new JLabel("Id Sheep");
+		lblIdSheep.setBounds(72, 121, 70, 14);
+		panel_13.add(lblIdSheep);
 		
 		
 		byte[] img = admin.getPhoto();
