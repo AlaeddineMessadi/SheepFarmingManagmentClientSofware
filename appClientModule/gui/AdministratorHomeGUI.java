@@ -665,7 +665,6 @@ public class AdministratorHomeGUI extends JFrame {
 		
 		JPanel employeePanel = new JPanel();
 		tabbedPane.addTab("           Employees           ", null, employeePanel, null);
-		employeePanel.setLayout(null);
 		
 		JPanel sheepPanel = new JPanel();
 		tabbedPane.addTab("           Sheeps           ", null, sheepPanel, null);

@@ -14,6 +14,8 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BuildingDelete extends JFrame {
 
@@ -44,7 +46,7 @@ public class BuildingDelete extends JFrame {
 	 */
 	public BuildingDelete() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(BuildingDelete.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 629, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -113,6 +115,11 @@ public class BuildingDelete extends JFrame {
 		contentPane.add(btnDelete);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCancel.setBounds(466, 332, 89, 23);
 		contentPane.add(btnCancel);

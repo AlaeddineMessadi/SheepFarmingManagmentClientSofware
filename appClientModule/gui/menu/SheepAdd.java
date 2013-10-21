@@ -16,6 +16,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSpinner;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SheepAdd extends JFrame {
 
@@ -47,7 +49,7 @@ public class SheepAdd extends JFrame {
 	 */
 	public SheepAdd() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SheepAdd.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 660, 440);
 		contentPane = new JPanel();
 		contentPane.setFont(new Font("Times New Roman", Font.BOLD, 11));
@@ -131,11 +133,19 @@ public class SheepAdd extends JFrame {
 		panel.add(cbSex);
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAdd.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnAdd.setBounds(22, 348, 89, 23);
 		contentPane.add(btnAdd);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();			}
+		});
 		btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCancel.setBounds(532, 348, 89, 23);
 		contentPane.add(btnCancel);

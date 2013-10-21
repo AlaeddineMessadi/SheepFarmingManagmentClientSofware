@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FarmerAdd extends JFrame {
 
@@ -50,7 +52,7 @@ public class FarmerAdd extends JFrame {
 	 */
 	public FarmerAdd() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FarmerAdd.class.getResource("/images/icon-sheep.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 637, 477);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -177,6 +179,11 @@ public class FarmerAdd extends JFrame {
 		contentPane.add(btnAdd);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancel.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCancel.setBounds(501, 395, 89, 23);
 		contentPane.add(btnCancel);

@@ -34,9 +34,14 @@ public class TestMain {
 
 
 
+
 /**/
 	 Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
       FarmServicesDelegate.createFarm(f);
+
+
+	   Farm ff = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
+       FarmServicesDelegate.createFarm(ff);
 	  	 Farm f1 = new Farm(); 
 	  	 
 	    f1= FarmServicesDelegate.findFarmById(1);
