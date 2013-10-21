@@ -1,7 +1,17 @@
 package gui;
 
+import gui.menu.BuildingAdd;
+import gui.menu.BuildingDelete;
+import gui.menu.BuildingModify;
 import gui.menu.FarmAdd;
+import gui.menu.FarmDelete;
 import gui.menu.FarmModify;
+import gui.menu.FarmerAdd;
+import gui.menu.FarmerDelete;
+import gui.menu.FarmerModify;
+import gui.menu.SheepAdd;
+import gui.menu.SheepDelete;
+import gui.menu.SheepModify;
 import gui.messages.retypePassword;
 
 import java.awt.EventQueue;
@@ -193,42 +203,112 @@ public class AdministratorHomeGUI extends JFrame {
 		mnFarm.add(mntmModifyFarm);
 		
 		JMenuItem mntmDeleteFarm = new JMenuItem("Delete Farm");
+		mntmDeleteFarm.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FarmDelete f =  new FarmDelete() ;
+				f.setVisible(true);
+			}
+		});
 		mnFarm.add(mntmDeleteFarm);
 		
 		JMenu mnBatiment = new JMenu("Batiment");
 		menuBar.add(mnBatiment);
 		
 		JMenuItem mntmAddBatiment = new JMenuItem("Add Batiment");
+		mntmAddBatiment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			   BuildingAdd a = new BuildingAdd();
+			   a.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmAddBatiment);
 		
 		JMenuItem mntmModifyBatiment = new JMenuItem("Modify Batiment");
+		mntmModifyBatiment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			  BuildingModify a = new BuildingModify() ;
+			  a.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmModifyBatiment);
 		
 		JMenuItem mntmDeleteBatiment = new JMenuItem("Delete Batiment");
+		mntmDeleteBatiment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				BuildingDelete a = new BuildingDelete();
+				a.setVisible(true);
+			}
+		});
 		mnBatiment.add(mntmDeleteBatiment);
 		
 		JMenu mnSheeps = new JMenu("Sheeps");
 		menuBar.add(mnSheeps);
 		
 		JMenuItem mntmAddSheep = new JMenuItem("Add Sheep");
+		mntmAddSheep.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SheepAdd a = new SheepAdd();
+				a.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmAddSheep);
 		
 		JMenuItem mntmModifySheep = new JMenuItem("Modify Sheep");
+		mntmModifySheep.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SheepModify a = new SheepModify();
+				a.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmModifySheep);
 		
 		JMenuItem mntmDeleteSheep = new JMenuItem("Delete Sheep");
+		mntmDeleteSheep.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SheepDelete a = new SheepDelete() ;
+				a.setVisible(true);
+			}
+		});
 		mnSheeps.add(mntmDeleteSheep);
 		
 		JMenu mnEmployees = new JMenu("Employees");
 		menuBar.add(mnEmployees);
 		
 		JMenuItem mntmAddEmployee = new JMenuItem("Add Employee");
+		mntmAddEmployee.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FarmerAdd a = new FarmerAdd();
+				a.setVisible(true);
+			}
+		});
 		mnEmployees.add(mntmAddEmployee);
 		
 		JMenuItem mntmModifyEmployee = new JMenuItem("Modify Employee");
+		mntmModifyEmployee.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FarmerModify a = new FarmerModify();
+				a.setVisible(true);
+			}
+		});
 		mnEmployees.add(mntmModifyEmployee);
 		
 		JMenuItem mntmDeleteEmployee = new JMenuItem("Delete Employee");
+		mntmDeleteEmployee.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FarmerDelete a = new FarmerDelete();
+				a.setVisible(true);
+			}
+		});
 		mnEmployees.add(mntmDeleteEmployee);
 		
 		JMenu mnHelp = new JMenu("Help");
