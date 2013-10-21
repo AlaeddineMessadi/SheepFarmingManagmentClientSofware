@@ -12,10 +12,12 @@ import javax.naming.NamingException;
 import delegate.AdminServiceDelegate;
 import delegate.BatimentServiceDelegate;
 import delegate.FarmServicesDelegate;
+import delegate.SheepServicesDelegate;
 import persistance.Admin;
 import persistance.Batiment;
 import persistance.Employee;
 import persistance.Farm;
+import persistance.Sheep;
 
 
 public class TestMain {
@@ -32,10 +34,10 @@ public class TestMain {
 
 
 
-
-	   //Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
-       //FarmServicesDelegate.createFarm(f);
-/*	  	 Farm f1 = new Farm(); 
+/**/
+	 Farm f = new Farm(0, "FarmaVille", "Nabeul","20928321","farmaville@gmail.com");
+      FarmServicesDelegate.createFarm(f);
+	  	 Farm f1 = new Farm(); 
 	  	 
 	    f1= FarmServicesDelegate.findFarmById(1);
 		System.out.println(f1.toString());
@@ -61,26 +63,30 @@ public class TestMain {
 	Batiment b = BatimentServiceDelegate.findBatimentById(1);
 	BatimentServiceDelegate.EmployeeToBatiment(b,emp);
 	
-	*/Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
+	Admin a = new Admin("aa", "aa", "aa", "aa", "aa", "aa", "aa",null);
 	AdminServiceDelegate.createAdmin(a);
-	  //////////////
+  //////////////
 
 		
-/*		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");
+		Sheep sh1 = new Sheep(0, 04, "arabi", "male", null, null, null, "A-", null, null, 0, 0, null, 0, 0, "happy sheep");
 		Sheep sh2 = new Sheep(0, 2, "arbi", "male", new Date(), null, null, null, null, null, 0, 0, null, 0, 0, "mad sheep");
 		List<Sheep> sheeps = new ArrayList<Sheep>();
 		sheeps.add(sh1);
 		sheeps.add(sh2);
 
-        Batiment b = BatimentServiceDelegate.findBatimentById(10);
-        BatimentServiceDelegate.SheepToBatiment(b, sheeps);
+        Batiment bb = BatimentServiceDelegate.findBatimentById(1);
+        BatimentServiceDelegate.SheepToBatiment(bb, sheeps);
         
 		
 		List<Sheep> s = SheepServicesDelegate.getSheeps();
 		for(Sheep ss:s){
 			System.out.println(ss.getCode_sheep());
 		}
-	*/
+	
+		List<Batiment> r = BatimentServiceDelegate.getBatiment();
+		for(Batiment ss:r){
+			System.out.println(ss.getEmployee().size());
+		}
 	
 	}
 
