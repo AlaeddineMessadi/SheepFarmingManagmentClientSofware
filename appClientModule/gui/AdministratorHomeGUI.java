@@ -53,8 +53,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.border.LineBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+
 
 public class AdministratorHomeGUI extends JFrame {
 
