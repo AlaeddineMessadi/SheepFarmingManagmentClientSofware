@@ -49,6 +49,7 @@ public class FarmModify extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	public FarmModify() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FarmModify.class.getResource("/images/icon-sheep.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

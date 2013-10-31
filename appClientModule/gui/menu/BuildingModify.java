@@ -49,6 +49,7 @@ public class BuildingModify extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("rawtypes")
 	public BuildingModify() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(BuildingModify.class.getResource("/images/icon-sheep.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
